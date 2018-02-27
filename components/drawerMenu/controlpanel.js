@@ -9,12 +9,32 @@ import {
 } from 'react-native';
 
 export default class ControlPanel extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isLogin: false,
+      buttonValue : 'Đăng Nhập Thành Viên',
+      avatar : {uri:'https://i.imgur.com/nfYFK52.png'}
+    }
+  }
+  async componentWillMount(){
+    //check login
+    try {
+      const value = await AsyncStorage.getItem('@LoginMetiz:key');
+        if (value !== null){
+          console.log('Check login thành công! '+value);
+          this.setState({isLogin:true,buttonValue: 'Đăng Xuất',avatar:{uri:'https://i.imgur.com/yumgUsX.jpg'}});
+        }
+      } catch (error) {
+        console.log(error);
+      }
+  }
   async logout(){
     try {
       await AsyncStorage.removeItem('@LoginMetiz:key');
       console.log('Logout !');
       alert('logout thành công!');
-      this.props.navigation.navigate('Login')
+      this.props.navigation.navigate('Tabbar')
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +56,7 @@ export default class ControlPanel extends Component{
           <View style={{}}>
             <Image
              style={{width:80,height:80,borderRadius:40}}
-             source={{uri:'https://i.imgur.com/nfYFK52.png'}}
+             source={this.state.avatar}
              />
           </View>
           <View style={{paddingLeft:30}}>
@@ -47,7 +67,7 @@ export default class ControlPanel extends Component{
           </View>
         </View>
         <View style={{flex:1/3}}>
-          <Button color="black" onPress={this.login.bind(this)} title="Đăng Nhập Thành Viên"/>
+          <Button color="black" onPress={this.state.isLogin ? this.logout.bind(this) : this.login.bind(this)} title={this.state.buttonValue}/>
         </View>
         </View>
         <View style={styles.control_menu_item}>

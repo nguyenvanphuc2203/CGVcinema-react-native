@@ -16,7 +16,7 @@ export default class Wellcome extends Component{
   componentWillMount(){
     setTimeout(()=>{
       this.props.navigation.navigate('Tabbar');
-    },600);
+    },1000);
   }
   static navigationOptions = () => ({
     header: null
