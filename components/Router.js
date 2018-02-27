@@ -4,6 +4,6 @@ import Login from './login/login';
 import Tabbar from './tabbar/tabbar';
 
 export const HomeStack = StackNavigator({
-  Login:{ screen: Login },
+  Login: { screen: Login },
   Tabbar : { screen: Tabbar }
 });

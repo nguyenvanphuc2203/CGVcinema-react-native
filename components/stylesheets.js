@@ -190,7 +190,6 @@ export default styles = StyleSheet.create({
     marginTop:2,
     height:70,
     paddingLeft:10,
-    backgroundColor:'#292a2b',
-    color:'#fff'
+    backgroundColor:'#292a2b'
   }
 });

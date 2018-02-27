@@ -48,14 +48,14 @@ export default class Item extends Component<{}> {
                   <Button onPress={()=>{this.setState({isModalVisible: !this.state.isModalVisible})}} title="Xem trailer"/>
                 </View>
                 <View style={{marginTop:10}}>
-                  <Button color="#841584" title="Mua Vé"/>
+                  <Button onPress={()=>{}} color="#841584" title="Mua Vé"/>
                 </View>
               </View>
             </View>
           </View>
           {/* modal trailer */}
           <Modal isVisible={this.state.isModalVisible}>
-            <View style={{ flex: 0.5,jutifyContent:'center' }}>
+            <View style={{ flex: 0.5,justifyContent:'center' }}>
               <Text>Hello!</Text>
               <WebView source={{ html: '<center><iframe width="100%" height="100%" src="https://www.youtube.com/embed/oneDEal9RXs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>' }} />
               <Button color="#841584" onPress={()=>{this.setState({isModalVisible: !this.state.isModalVisible})}} title="Hủy"/>

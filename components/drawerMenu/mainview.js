@@ -29,7 +29,7 @@ export default class Drawermenu extends Component{
         tapToClose={true}
         openDrawerOffset={0.3}
         ref={(ref) => this._drawer = ref}
-        content={<ControlPanel/>}
+        content={<ControlPanel navigation={this.props.navigation}/>}
         >
           <View style={styles.view_main}>
             <View style={styles.head_view}>
