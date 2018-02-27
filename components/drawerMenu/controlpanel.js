@@ -19,6 +19,9 @@ export default class ControlPanel extends Component{
       console.log(error);
     }
   }
+  login(){
+    this.props.navigation.navigate('Login')
+  }
   render(){
     return (
       <View style={styles.control_main}>
@@ -33,7 +36,7 @@ export default class ControlPanel extends Component{
           <View style={{}}>
             <Image
              style={{width:80,height:80,borderRadius:40}}
-             source={{uri:'https://i.imgur.com/71uqAwu.jpg'}}
+             source={{uri:'https://i.imgur.com/nfYFK52.png'}}
              />
           </View>
           <View style={{paddingLeft:30}}>
@@ -44,7 +47,7 @@ export default class ControlPanel extends Component{
           </View>
         </View>
         <View style={{flex:1/3}}>
-          <Button color="black" onPress={this.logout.bind(this)} title="Đăng xuất"/>
+          <Button color="black" onPress={this.login.bind(this)} title="Đăng Nhập Thành Viên"/>
         </View>
         </View>
         <View style={styles.control_menu_item}>

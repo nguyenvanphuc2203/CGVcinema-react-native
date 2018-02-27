@@ -2,8 +2,10 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Login from './login/login';
 import Tabbar from './tabbar/tabbar';
+import Wellcome from './wellcome/wellcome';
 
 export const HomeStack = StackNavigator({
-  Login: { screen: Login },
-  Tabbar : { screen: Tabbar }
+  Wellcome:{ screen: Wellcome },
+  Tabbar : { screen: Tabbar },
+  Login: { screen: Login }
 });
