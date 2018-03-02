@@ -3,6 +3,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import Profile from '../profile/profile';
 import Movies from '../movies/movies';
 import { NotificationRoute } from '../notification/notificationRoute';
+import { MoviesRoute } from '../movies/moviesRoute';
 import Drawermenu from '../drawerMenu/mainview';
 import {
   View,
@@ -41,7 +42,7 @@ export default class Tabbar extends Component<{}>{
           renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_black.png')} />}
           renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_white.png')} />}
           onPress={() => this.setState({ selectedTab: 'Movies',numberMessage:0 })}>
-          <Movies/>
+          <MoviesRoute/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'Notification'}

@@ -75,31 +75,31 @@ export default class ControlPanel extends Component{
         </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/home_white.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/home_white.png')} />
             <Text style={{color:'#fff'}}>Trang chủ</Text>
           </View>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/movies_white.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/movies_white.png')} />
             <Text style={{color:'#fff'}}>Phim mới</Text>
           </View>
         </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/icon_member.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_member.png')} />
             <Text style={{color:'#fff'}}>Thẻ thành viên</Text>
           </View>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/icon_gift.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_gift.png')} />
             <Text style={{color:'#fff'}}>Ưu đãi và quà tặng</Text>
           </View>
         </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/icon_cinema.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_cinema.png')} />
             <Text style={{color:'#fff'}}>Rạp metiz</Text>
           </View>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:40,height:40,marginBottom:3}} source={require('../images/icon_info.png')} />
+            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_info.png')} />
             <Text style={{color:'#fff'}}>Help</Text>
           </View>
         </View>

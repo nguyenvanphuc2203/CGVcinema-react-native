@@ -36,6 +36,9 @@ class Showing extends React.Component {
       ],
     }
   }
+  static navigationOptions = ({navigation}) => ({
+    header:null
+  })
   render() {
     return (
       <View style={{flex:1,backgroundColor:'black'}}>
@@ -61,7 +64,6 @@ class Showing extends React.Component {
               </View>
             </View>
           </TouchableOpacity>
-
         )}
       />
       </View>
@@ -86,6 +88,9 @@ class Comming extends React.Component {
       ],
     }
   }
+  static navigationOptions = ({navigation}) => ({
+    header:null
+  })
   render() {
     return (
       <View style={{flex:1,backgroundColor:'black'}}>
@@ -118,6 +123,7 @@ class Comming extends React.Component {
     );
   }
 }
+
 
 
 export default TabNavigator({
