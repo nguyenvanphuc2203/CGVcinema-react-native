@@ -9,21 +9,19 @@ import {
   Button,
   Image,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator,
+  Dimensions,
+  ScrollView
 } from 'react-native';
+import { TabNavigator } from 'react-navigation';
+import Movies from './tab-film';
+import Carousel from 'react-native-snap-carousel';
+
 
 export default class Homeview extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      popular: [
-        { 'name' :'ĐẢO ĐỊA NGỤC', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':''},
-        { 'name' :'ANABELLA', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':''},
-        { 'name' :'JUMANJI', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':''},
-        { 'name' :'HOANG ĐẢO', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':''},
-        { 'name' :'TỬ TÙ', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':''}
-      ]
-    }
   }
   static navigationOptions = () => ({
       header:null
@@ -34,6 +32,9 @@ export default class Homeview extends Component{
             {/* <!-- image slider --> */}
               <View style={styles.slider_swiper}>
                 <Swiper
+                  loadMinimal={true}
+                  loadMinimalSize={2}
+                  loadMinimalLoader={<ActivityIndicator size="large" color="#00ff00" />}
                   style={styles.wrapper}
                   autoplay={true}
                   showsButtons={true}>
@@ -57,32 +58,11 @@ export default class Homeview extends Component{
                   </View>
                 </Swiper>
               </View>
-              {/* <!-- popular --> */}
-              <View style={styles.control_menu_item}>
-                <Text style={{color:'#fff'}}>Popular</Text>
+              {/* <!-- Tab Movies --> */}
+              <View style={{flex:3/4}}>
+                <Movies screenProps={{ navigation: this.props.navigation }}/>
               </View>
-              <View style={{flex:1.8/3}}>
-                <FlatList
-                data={this.state.popular}
-                renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('Item',{ name:item.name,description:item.description})}}>
-                  <View style={styles.popular_item}>
-                    <View >
-                      <Image
-                      style={{width:100,height:200,flex: 1,resizeMode: 'contain'}}
-                      source={require('../images/banner_film3.jpg')}
-                      />
-                    </View>
-                    <View style={{justifyContent:'center',paddingLeft:10}}>
-                      <Text style={{color:'#fff'}}>{item.name}</Text>
-                      <Text style={{color:'#fff'}}>{item.description}</Text>
-                    </View>
 
-                  </View>
-                </TouchableOpacity>
-                }
-                />
-              </View>
         </View>
     );
   }

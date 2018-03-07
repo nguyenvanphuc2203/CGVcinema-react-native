@@ -9,7 +9,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  BackHandler
 } from 'react-native';
 
 export default class Tabbar extends Component<{}>{
@@ -18,7 +19,16 @@ export default class Tabbar extends Component<{}>{
     this.state = {
       selectedTab:'cinema',
       numberMessage:4
-    }
+    };
+    BackHandler.addEventListener('hardwareBackPress', function() {
+        alert('hello back');
+        return false;
+    })
+  }
+  componentWillUnmount(){
+      BackHandler.removeEventListener('hardwareBackPress', () => {
+        alert('hello back')
+      });
   }
   static navigationOptions = () => ({
     header: null
@@ -30,33 +40,29 @@ export default class Tabbar extends Component<{}>{
         >
         <TabNavigator.Item
           selected={this.state.selectedTab === 'cinema'}
-          title="cinema"
-          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/home_black.png')} />}
+          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/home_white.png')} />}
           renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/home_green.png')} />}
           onPress={() => this.setState({ selectedTab: 'cinema' })}>
           <Drawermenu navigation={this.props.navigation}/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'Movies'}
-          title="Movies"
-          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_black.png')} />}
-          renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_white.png')} />}
+          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_white.png')} />}
+          renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_green.png')} />}
           onPress={() => this.setState({ selectedTab: 'Movies',numberMessage:0 })}>
           <MoviesRoute/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'Notification'}
-          title="Notification"
           badgeText={this.state.numberMessage}
-          renderIcon={() => <Image  source={require('../images/noti_black.png')} />}
+          renderIcon={() => <Image  source={require('../images/noti_white.png')} />}
           renderSelectedIcon={() => <Image  source={require('../images/noti_green.png')} />}
           onPress={() => this.setState({ selectedTab: 'Notification',numberMessage:0 })}>
           <NotificationRoute />
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}
-          title="Profile"
-          renderIcon={() => <Image source={require('../images/profile_black.png')} />}
+          renderIcon={() => <Image source={require('../images/profile_white.png')} />}
           renderSelectedIcon={() => <Image source={require('../images/profile_green.png')} />}
           onPress={() => this.setState({ selectedTab: 'profile' })}>
           <Profile/>

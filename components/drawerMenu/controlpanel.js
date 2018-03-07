@@ -5,7 +5,8 @@ import {
   Image,
   Button,
   TouchableHighlight,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 
 export default class ControlPanel extends Component{
@@ -70,9 +71,17 @@ export default class ControlPanel extends Component{
           <Button color="black" onPress={this.state.isLogin ? this.logout.bind(this) : this.login.bind(this)} title={this.state.buttonValue}/>
         </View>
         </View>
-        <View style={styles.control_menu_item}>
-          <Text style={{color:'#fff'}}>Trang chủ</Text>
-        </View>
+
+          <View style={{backgroundColor:'#3d5898',flex:1/10,flexDirection:"row"}}>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+              <Text style={{color:'#fff'}}>Điểm Tích Lũy</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+              <TouchableOpacity onPress={()=>{alert('Điểm thưởng để đổi quà ^^')}}>
+                <Text style={{color:'yellow',fontSize:20}}>202 Xu</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
             <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/home_white.png')} />
@@ -103,7 +112,6 @@ export default class ControlPanel extends Component{
             <Text style={{color:'#fff'}}>Help</Text>
           </View>
         </View>
-
       </View>
     )
   }

@@ -35,7 +35,7 @@ export default class Drawermenu extends Component{
             <View style={styles.head_view}>
               <TouchableOpacity onPress={this.openControlPanel}>
                 <Image
-                style={{width:30,height:30,marginLeft:10}}
+                style={{width:35,height:35,marginLeft:10}}
                 source={require('../images/menu_icon.png')}
                 />
               </TouchableOpacity>

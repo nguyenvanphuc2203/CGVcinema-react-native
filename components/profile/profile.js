@@ -16,7 +16,6 @@ import {
   ScrollView,
   Switch
 } from 'react-native';
-import Gps from './gps';
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -113,7 +112,6 @@ class Profile extends Component<{}>{
                 tintColor="#ff0000"
                 />
             <View style={{flex:1}}>
-              <Gps/>
             </View>
 
             <Button onPress={this.saveInfomation.bind(this)} title="SAVE" />

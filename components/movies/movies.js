@@ -106,7 +106,7 @@ class Comming extends React.Component {
             backgroundColor:'#292a2b'}}>
               <View >
                 <Image
-                style={{width:120, height:200,flex: 3/4,resizeMode: 'contain'}}
+                stopsyle={{width:120, height:200,flex: 3/4,resizeMode: 'contain'}}
                 source={{uri:item.thumbnail}}
                 />
               </View>

@@ -126,9 +126,12 @@ export default styles = StyleSheet.create({
     flex:1,
   },
   head_view:{
+    position:'absolute',
     flex:1/10,
-    backgroundColor:'black',
-    justifyContent:'center'
+    justifyContent:'center',
+    top:10,
+    left:5,
+    zIndex: 10
   },
   content_view:{
     flex:10/10
@@ -144,7 +147,7 @@ export default styles = StyleSheet.create({
     alignItems:'center'
   },
   control_menu_item:{
-    flex:1/10,
+    flex:0.7/10,
     justifyContent:'center',
     marginTop:2,
     paddingLeft:10,
@@ -152,7 +155,8 @@ export default styles = StyleSheet.create({
   },
   /*slide wiper*/
   slider_swiper:{
-    flex:1.2/3
+    flex:1/4,
+    position:'relative'
   },
   wrapper: {
   },

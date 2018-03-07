@@ -1,9 +1,11 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import Home from './home';
-import Item from './item';
+import Homeview from './home';
+import Item from '../movies/item';
+import Booking from '../booking/booking';
 
 export const MainRoute = StackNavigator({
-  Home: { screen: Home},
-  Item: { screen: Item }
+  Home: { screen: Homeview },
+  Item: { screen: Item },
+  Booking : { screen: Booking }
 });
