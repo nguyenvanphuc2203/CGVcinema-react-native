@@ -45,10 +45,12 @@ export default class Homeview extends Component{
                     />
                   </View>
                   <View style={styles.slide2}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('BannerDetail',{title:'Ưu đãi 8-3',description:'giảm giá vé trong ngày 8-3'})}}>
                     <Image
                     style={styles.image_swiper}
                     source={require('../images/banner_film2.jpg')}
                     />
+                    </TouchableOpacity>
                   </View>
                   <View style={styles.slide3}>
                     <Image

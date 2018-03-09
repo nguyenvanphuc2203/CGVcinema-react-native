@@ -8,7 +8,8 @@ import {
   TextInput,
   Button,
   ActivityIndicator,
-  AsyncStorage
+  AsyncStorage,
+  StatusBar
 } from 'react-native';
 
 export default class Wellcome extends Component{
@@ -24,6 +25,10 @@ export default class Wellcome extends Component{
   render(){
     return (
       <View style={styles.login}>
+        <StatusBar
+         backgroundColor="black"
+         barStyle="light-content"
+       />
         <View style={{alignItems:'center'}}>
           <Image
             style={{width: 150, height: 150}}

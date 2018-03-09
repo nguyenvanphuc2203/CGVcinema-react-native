@@ -10,7 +10,8 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  BackHandler
+  BackHandler,
+  Alert
 } from 'react-native';
 
 export default class Tabbar extends Component<{}>{
@@ -21,8 +22,21 @@ export default class Tabbar extends Component<{}>{
       numberMessage:4
     };
     BackHandler.addEventListener('hardwareBackPress', function() {
-        alert('hello back');
-        return false;
+        // handle back button to exit app
+        Alert.alert(
+          'Thoát ứng dụng',
+          'Bạn có muốn thoát không?', [{
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+          }, {
+              text: 'OK',
+              onPress: () => BackHandler.exitApp()
+          }, ], {
+              cancelable: false
+          }
+       )
+       return true;
     })
   }
   componentWillUnmount(){

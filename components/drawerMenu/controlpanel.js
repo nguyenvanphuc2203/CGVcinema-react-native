@@ -15,7 +15,7 @@ export default class ControlPanel extends Component{
     this.state = {
       isLogin: false,
       buttonValue : 'Đăng Nhập Thành Viên',
-      avatar : {uri:'https://i.imgur.com/nfYFK52.png'}
+      avatar : {uri:'https://i.imgur.com/ik7IrFf.jpg'}
     }
   }
   async componentWillMount(){
@@ -83,14 +83,14 @@ export default class ControlPanel extends Component{
             </View>
           </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
-          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Tabbar')}} style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
             <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/home_white.png')} />
             <Text style={{color:'#fff'}}>Trang chủ</Text>
-          </View>
-          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate('BookHistory')}} style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
             <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/movies_white.png')} />
-            <Text style={{color:'#fff'}}>Phim mới</Text>
-          </View>
+            <Text style={{color:'#fff'}}>Lịch Sử</Text>
+          </TouchableOpacity>
         </View>
         <View style={{flex:2/10,flexDirection:"row"}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>

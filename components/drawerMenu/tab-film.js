@@ -19,7 +19,11 @@ class Showing extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      entries: [],
+      entries: [
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'},
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'},
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'}
+      ],
     }
   }
   componentWillMount(){
@@ -33,11 +37,12 @@ class Showing extends React.Component {
       });
   }
   _renderItem ({item, index }) {
+        var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         return (
             <TouchableOpacity onPress={()=>{ this.props.screenProps.navigation.navigate('Item',{id:item.id}) }}>
-            <View style={{backgroundColor:'#333',marginTop:13,marginBottom:13}}>
-                <Image source={{uri:'https://image.tmdb.org/t/p/w500'+item.poster_path}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
-                <Text style={{color:'#fff',padding:2}}>{ item.title }</Text>
+            <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
+                <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
+                <Text  style={{color:'#fff',padding:2}}>{ item.title }</Text>
                 <Text style={{color:'#fff',padding:2}}>2h30p - Ngay {item.release_date}</Text>
             </View>
           </TouchableOpacity>
@@ -52,7 +57,7 @@ class Showing extends React.Component {
             renderItem={this._renderItem.bind(this)}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth*0.575}
-            firstItem={1}
+            firstItem={0}
             loop={true}
             autoplay={true}
             autoplayDelay={1000}
@@ -68,25 +73,30 @@ class Comming extends React.Component {
     super(props);
     this.state = {
       entries: [
-        { 'name' :'ĐẢO ĐỊA NGỤC', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/qd368xE.jpg'},
-        { 'name' :'ANABELLA', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/pPx3aWx.jpg'},
-        { 'name' :'JUMANJI', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
-        { 'name' :'HOANG ĐẢO', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
-        { 'name' :'TỬ TÙ', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/qd368xE.jpg'},
-        { 'name' :'TỬ TÙ', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
-        { 'name' :'HOANG ĐẢO', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
-        { 'name' :'TỬ TÙ', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/pPx3aWx.jpg'},
-        { 'name' :'TỬ TÙ', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'}
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'},
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'},
+        {title:'loading...',release_date:'loading...',poster_path:'/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'}
       ],
     }
   }
-  _renderItem ({item, index}) {
+  componentWillMount(){
+    fetch('http://api.themoviedb.org/3/movie/upcoming?api_key=e8631f0c8f0363c450d47ace4043eca5')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({entries: responseJson.results});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  _renderItem ({item, index }) {
+        var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         return (
-            <TouchableOpacity onPress={()=>{this.props.screenProps.navigation.navigate('Item',{ name:item.name,description:item.description})}}>
-            <View style={{backgroundColor:'#333',marginTop:13,marginBottom:13}}>
-                <Image source={{uri:item.thumbnail}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
-                <Text style={{color:'#fff',padding:2}}>{ item.name }</Text>
-                <Text style={{color:'#fff'}}>2h30p - Ngay 01/02/2018</Text>
+            <TouchableOpacity onPress={()=>{ this.props.screenProps.navigation.navigate('Item',{id:item.id}) }}>
+            <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
+                <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
+                <Text  style={{color:'#fff',padding:2}}>{ item.title }</Text>
+                <Text style={{color:'#fff',padding:2}}>2h30p - Ngay {item.release_date}</Text>
             </View>
           </TouchableOpacity>
         );
@@ -100,7 +110,7 @@ class Comming extends React.Component {
             renderItem={this._renderItem.bind(this)}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth*0.575}
-            firstItem={1}
+            firstItem={0}
             loop={true}
             autoplay={true}
             autoplayDelay={1000}
@@ -108,6 +118,7 @@ class Comming extends React.Component {
       </View>
     );
   }
+
 }
 
 

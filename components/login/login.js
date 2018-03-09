@@ -16,27 +16,16 @@ export default class Login extends Component{
     super(props);
     this.state = {
       sdt:'0964357189',
-      password:'admin',
-      isLogin:false
+      password:'admin'
     }
   }
-  async componentWillMount(){
-    //check login
-    try {
-      const value = await AsyncStorage.getItem('@LoginMetiz:key');
-        if (value !== null){
-          console.log('Check login thành công! '+value);
-          this.setState({isLogin:true});
-          setTimeout(()=>{
-            this.props.navigation.navigate('Tabbar');
-          },600);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-  }
   static navigationOptions = () => ({
-    header: null
+    title: '',
+    headerStyle: {
+      backgroundColor: 'black',
+      zIndex:1000
+    },
+    headerTintColor: '#fff',
   })
   async _login(){
     var sdt = this.refs.sdt._lastNativeText;
@@ -54,18 +43,6 @@ export default class Login extends Component{
     else alert('lỗi đăng nhập');
   }
   render(){
-    if ( this.state.isLogin ) return (
-      <View style={styles.login}>
-        <View style={{alignItems:'center'}}>
-          <Image
-            style={{width: 150, height: 150}}
-            source={require('../images/logo.png')}
-          />
-          <ActivityIndicator size="large" color="#fff" />
-        </View>
-      </View>
-    )
-    else
     return (
       <View style={styles.login}>
         <View style={{alignItems:'center'}}>
