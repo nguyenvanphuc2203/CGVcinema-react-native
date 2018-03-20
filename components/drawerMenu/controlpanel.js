@@ -78,7 +78,7 @@ export default class ControlPanel extends Component{
             </View>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
               <TouchableOpacity onPress={()=>{alert('Điểm thưởng để đổi quà ^^')}}>
-                <Text style={{color:'yellow',fontSize:20}}>202 Xu</Text>
+                <Text style={{color:'yellow',fontSize:20}}>202.000 Xu</Text>
               </TouchableOpacity>
             </View>
           </View>

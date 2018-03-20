@@ -59,13 +59,7 @@ export default class Item extends Component<{}> {
       <ActivityIndicator
         color='#009688'
         size='large'
-        style={{position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center'}}
+        style={{position: 'absolute',left: 0,right: 0,top: 0,bottom: 0,alignItems: 'center',justifyContent: 'center'}}
       />
     );
   }
@@ -75,19 +69,17 @@ export default class Item extends Component<{}> {
     var trailer_url = String(str).substr(87, 11);
     console.log(trailer_url)
     return (
-        <View style={{flex:1,flexDirection:"column"}}>
-          <View style={{flex:1/3}}>
+        <View style={{flex:1,flexDirection:"column",backgroundColor:'black'}}>
+          <View style={{flex:1/3,marginTop:5}}>
             <ImageBackground style={{width:'100%',height:'100%'}} source={{uri:'https://image.tmdb.org/t/p/w500'+this.state.data.backdrop_path}}>
               <WebView
                 renderLoading={this.ActivityIndicatorLoadingView}
                 javaScriptEnabled={true}
-                 domStorageEnabled={true}
-                 startInLoadingState={true}
-                 style={{justifyContent: 'center',alignItems: 'center',flex:1,}}
-                source={{ uri:'https://www.youtube.com/embed/'+trailer_url}}/>
+                style={{justifyContent: 'center',alignItems: 'center'}}
+                source={{ uri:'https://www.youtube.com/embed/'+trailer_url}} />
             </ImageBackground>
           </View>
-          <View style={{flex:1.1/3,paddingTop:10,backgroundColor:'#292a2b'}}>
+          <View style={{flex:1.1/3,paddingTop:10,marginTop:5,backgroundColor:'#292a2b'}}>
             <View style={{flexDirection:"row"}}>
                 <Image
                 style={{width:100,height:200,flex: 1,resizeMode: 'contain'}}

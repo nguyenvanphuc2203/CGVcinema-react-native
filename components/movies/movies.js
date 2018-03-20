@@ -28,7 +28,7 @@ class Showing extends React.Component {
     super(props);
     this.state = {
       Showing : [
-        { 'name' :'ĐẢO ĐỊA NGỤC', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/qd368xE.jpg'},
+        { 'name' :'ĐẢO ĐỊA NGỤC 1', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/qd368xE.jpg'},
         { 'name' :'ANABELLA', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/pPx3aWx.jpg'},
         { 'name' :'JUMANJI', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
         { 'name' :'HOANG ĐẢO', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://i.imgur.com/tezoQl5.jpg'},
@@ -92,7 +92,7 @@ class Comming extends React.Component {
     header:null
   })
   componentWillMount(){
-    fetch('https://api.themoviedb.org/3/discover/movie?api_key=e8631f0c8f0363c450d47ace4043eca5')
+    fetch('http://api.themoviedb.org/3/movie/upcoming?api_key=e8631f0c8f0363c450d47ace4043eca5')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({Showing: responseJson.results});
@@ -128,8 +128,6 @@ class Comming extends React.Component {
     );
   }
 }
-
-
 
 
 export default TabNavigator({

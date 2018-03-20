@@ -9,6 +9,7 @@ import {
   Alert,
   Dimensions
 } from 'react-native';
+
 import Carousel from 'react-native-snap-carousel';
 import { TabNavigator } from 'react-navigation';
 
@@ -37,17 +38,18 @@ class Showing extends React.Component {
       });
   }
   _renderItem ({item, index }) {
+        // render item of slider film 
         var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         return (
             <TouchableOpacity onPress={()=>{ this.props.screenProps.navigation.navigate('Item',{id:item.id}) }}>
             <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
                 <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
-                <Text  style={{color:'#fff',padding:2}}>{ item.title }</Text>
-                <Text style={{color:'#fff',padding:2}}>2h30p - Ngay {item.release_date}</Text>
+                <Text  style={{color:'#fff',padding:2}}> { item.title }</Text>
+                <Text style={{color:'#fff',padding:2}}> 2h30p - {item.release_date}</Text>
             </View>
           </TouchableOpacity>
         );
-    }
+  }
   render() {
     return (
       <View style={{backgroundColor:'#333'}}>
@@ -65,7 +67,6 @@ class Showing extends React.Component {
       </View>
     );
   }
-
 }
 
 class Comming extends React.Component {
@@ -92,7 +93,7 @@ class Comming extends React.Component {
   _renderItem ({item, index }) {
         var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         return (
-            <TouchableOpacity onPress={()=>{ this.props.screenProps.navigation.navigate('Item',{id:item.id}) }}>
+          <TouchableOpacity onPress={()=>{ this.props.screenProps.navigation.navigate('Item',{id:item.id}) }}>
             <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
                 <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
                 <Text  style={{color:'#fff',padding:2}}>{ item.title }</Text>
@@ -118,17 +119,16 @@ class Comming extends React.Component {
       </View>
     );
   }
-
 }
 
 
 export default TabNavigator({
-  'Đang Chiếu': { screen: props => {
-    return <Showing screenProps={{navigation:props.screenProps.navigation }}/>}
-   },
-  'Sắp Chiếu': { screen: props => {
-    return <Comming screenProps={{navigation:props.screenProps.navigation }}/>}
-   },
+    'Đang Chiếu': { screen: props => {
+      return <Showing screenProps={{ navigation:props.screenProps.navigation }}/>}
+    },
+    'Sắp Chiếu': { screen: props => {
+      return <Comming screenProps={{ navigation:props.screenProps.navigation }}/>}
+    },
 },
 {
   tabBarOptions: {
@@ -136,6 +136,9 @@ export default TabNavigator({
     activeTabStyle: {
       color:"#fff",
       backgroundColor: '#333',
+    },
+    tabStyle: {
+      height: 45,  
     },
     style: {
       backgroundColor: 'black',
