@@ -10,7 +10,8 @@ import {
   ActivityIndicator,
   AsyncStorage
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Kohana } from 'react-native-textinput-effects';
 export default class Login extends Component{
   constructor(props){
     super(props);
@@ -30,7 +31,7 @@ export default class Login extends Component{
   async _login(){
     var sdt = this.refs.sdt._lastNativeText;
     var password = this.refs.password._lastNativeText;
-
+    console.log(this.refs.sdt._lastNativeText)
     if ( sdt === this.state.sdt && password === this.state.password )
       {
         try {
@@ -51,16 +52,37 @@ export default class Login extends Component{
             source={require('../images/logo.png')}
           />
         </View>
-        <View style={{paddingLeft:40,paddingRight:40}}>
-          <TextInput
-          style={{borderWidth:1,borderColor:'black',backgroundColor:'#fff'}}
-          placeholder="nhập số điện thoại"
-          ref="sdt" />
-          <TextInput
-          style={{borderWidth:1,borderColor:'black',backgroundColor:'#fff'}}
-          placeholder="password"
-          secureTextEntry={true}
-          ref="password" />
+        
+        <View style={{height:150,paddingLeft:20,paddingRight:20}}>
+          <Kohana
+            style={{ backgroundColor: '#f9f5ed',marginTop:3 }}
+            label={'Username'}
+            iconClass={Icon}
+            iconName={'user'}
+            iconColor={'#f4d29a'}
+            labelStyle={{ color: '#91627b' }}
+            inputStyle={{ color: '#91627b' }}
+            useNativeDriver
+            ref="sdt"
+            keyboardType="numeric"
+          />
+          {/* <TextInput
+            style={{borderWidth:1,borderColor:'black',backgroundColor:'#fff'}}
+            placeholder="password"
+            secureTextEntry={true}
+            ref="password" /> */}
+          <Kohana
+            style={{ backgroundColor: '#f9f5ed',marginTop:3 }}
+            label={'Password'}
+            iconClass={Icon}
+            iconName={'lock'}
+            iconColor={'#f4d29a'}
+            labelStyle={{ color: '#91627b' }}
+            inputStyle={{ color: '#91627b' }}
+            useNativeDriver
+            secureTextEntry={true}
+            ref="password"
+          />
           <Button onPress={this._login.bind(this)} title="Login"/>
         </View>
       </View>

@@ -23,7 +23,7 @@ export default class ControlPanel extends Component{
     try {
       const value = await AsyncStorage.getItem('@LoginMetiz:key');
         if (value !== null){
-          console.log('Check login thành công! '+value);
+          console.log('Check login thành công Metiz! '+value);
           this.setState({isLogin:true,buttonValue: 'Đăng Xuất',avatar:{uri:'https://i.imgur.com/yumgUsX.jpg'}});
         }
       } catch (error) {
