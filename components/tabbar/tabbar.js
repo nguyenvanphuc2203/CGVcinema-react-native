@@ -13,6 +13,8 @@ import {
   BackHandler,
   Alert
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+const myIcon = (<Icon name="iOS-Outline" size={30} color="#900" />)
 
 export default class Tabbar extends Component<{}>{
   constructor(props){
@@ -54,30 +56,30 @@ export default class Tabbar extends Component<{}>{
         >
         <TabNavigator.Item
           selected={this.state.selectedTab === 'cinema'}
-          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/home_white.png')} />}
-          renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/home_green.png')} />}
+          renderIcon={() => <Icon name="ios-home-outline" size={30} color="#fff" />}
+          renderSelectedIcon={() => <Icon name="ios-home" size={30} color="#fff" />}
           onPress={() => this.setState({ selectedTab: 'cinema' })}>
           <Drawermenu navigation={this.props.navigation}/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'Movies'}
-          renderIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_white.png')} />}
-          renderSelectedIcon={() => <Image style={{width:26,height:26}} source={require('../images/movies_green.png')} />}
+          renderIcon={() => <Icon name="ios-videocam-outline" size={30} color="#fff" />}
+          renderSelectedIcon={() => <Icon name="ios-videocam" size={30} color="#fff" />}
           onPress={() => this.setState({ selectedTab: 'Movies',numberMessage:0 })}>
           <MoviesRoute/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'Notification'}
           badgeText={this.state.numberMessage}
-          renderIcon={() => <Image  source={require('../images/noti_white.png')} />}
-          renderSelectedIcon={() => <Image  source={require('../images/noti_green.png')} />}
+          renderIcon={() => <Icon name="ios-notifications-outline" size={30} color="#fff" />}
+          renderSelectedIcon={() => <Icon name="ios-notifications" size={30} color="#fff" />}
           onPress={() => this.setState({ selectedTab: 'Notification',numberMessage:0 })}>
           <NotificationRoute />
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}
-          renderIcon={() => <Image source={require('../images/profile_white.png')} />}
-          renderSelectedIcon={() => <Image source={require('../images/profile_green.png')} />}
+          renderIcon={() => <Icon name="ios-contact-outline" size={30} color="#fff" />}
+          renderSelectedIcon={() => <Icon name="ios-contact" size={30} color="#fff" />}
           onPress={() => this.setState({ selectedTab: 'profile' })}>
           <Profile/>
         </TabNavigator.Item>
