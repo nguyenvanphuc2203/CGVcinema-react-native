@@ -5,33 +5,37 @@ import {
   SEND_MESSAGE,
   CLEAR_MESSAGE
 } from './actions';
+import { NavigationActions } from 'react-navigation';
+import NavigationRoute from '../Router';
 
-/* chat reducer */
-var chat = (state = [{'name':'Nguyễn Phúc','message': 'congratulate!'}] , action) => {
-  switch (action.type) {
-    case SEND_MESSAGE:
-      return  [...state,action.item];
-    case CLEAR_MESSAGE:
-      return [] ;
-    default: return state;
 
+
+const initialNavState = NavigationRoute.router.getStateForAction(NavigationActions.init())
+
+const nav = (state = initialNavState ,action) => {
+  switch(action.type) {
+      case 'HOME':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'HomeView'}),state)
+      case 'LOGIN':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'Login'}),state)
+      case 'NOTIFICATION':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'Notification'}),state)
+      case 'NOTIFICATION_DETAIL':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'NotificationDetail',params:{ title:action.title,description:action.description}}),state)
+      case 'DETAIL_FILM':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'DetailFilm',params: { id: action.id }  }),state)
+      case 'BOOKING_HISORY':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'BookHistory'}),state)
+      case 'BACK':
+          return NavigationRoute.router.getStateForAction(NavigationActions.back(),state);
+      case 'Logout':
+          return NavigationRoute.router.getStateForAction(NavigationActions.navigate({routeName: 'Completed'}),state)
+      default:
+          return  NavigationRoute.router.getStateForAction(action,state);
   }
 }
-/* status reducer */
-var default_status = [
-  { 'name':'Nguyễn Phúc','status':'<3 yêu anh','avatar':'https://i.imgur.com/cjQ1OsJ.jpg','time':'a few second ago','cover':'https://i.imgur.com/tqPOrkW.jpg' },
-  { 'name':'Phan văn Đức','status':'nét đẹp việt nam','avatar':'https://i.imgur.com/tqPOrkW.jpg','time':'10 second ago','cover':'https://i.imgur.com/tw2VXra.png' },
-  { 'name':'Bùi Tiến Dũng','status':'cổ vũ bóng đá việt nam ','avatar':'https://i.imgur.com/tw2VXra.png','time':'1 minute', 'cover':'https://i.imgur.com/twKPvLQ.png' },
-];
-var status = (state = default_status , action) => {
-  switch (action.type) {
-    case POST_STATUS:
-      return  [action.item,...state];
-    case CLEAR_STATUS:
-      return [] ;
-    default: return state;
-  }
-}
+/* Navigation redux  */
+
 
 /* combineReducers */
-export default rootReducer = combineReducers({chat,status});
+export default rootReducer = combineReducers({nav});

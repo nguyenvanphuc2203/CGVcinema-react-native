@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Toast from 'react-native-simple-toast';
 import Modal from "react-native-modal";
 import { TabNavigator } from 'react-navigation';
-
+import { connect } from 'react-redux';
 import {
   Platform,
   StyleSheet,
@@ -17,7 +17,7 @@ import {
   ScrollView
 } from 'react-native';
 
-export default class Item extends Component<{}> {
+class Item extends Component<{}> {
   constructor(props){
     super(props);
     this.state = {
@@ -27,21 +27,12 @@ export default class Item extends Component<{}> {
   }
   static navigationOptions = ({navigation}) => ({
     title: 'Chi tiết phim',
-    headerTitleStyle: {
-        marginLeft:70
-    },
-    headerLeft: null,
     headerStyle: {
       backgroundColor: '#333',
-      zIndex:1000
+      zIndex:1000,
+      height:50
     },
     headerTintColor: '#fff',
-    headerRight: (
-      <TouchableOpacity onPress={()=>{navigation.goBack()}}>
-      <Image source={{uri:'https://i.imgur.com/cTLlz0F.png'}} style={{width:24,height:24,marginRight:10}}
-      ></Image>
-      </TouchableOpacity>
-    )
   })
   componentWillMount(){
     fetch('https://api.themoviedb.org/3/movie/'+this.props.navigation.state.params.id+'?api_key=e8631f0c8f0363c450d47ace4043eca5&append_to_response=videos')
@@ -118,3 +109,11 @@ export default class Item extends Component<{}> {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    nav:state.nav
+  }
+}
+
+export default connect(mapStateToProps)(Item)

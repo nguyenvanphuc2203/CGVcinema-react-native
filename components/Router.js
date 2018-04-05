@@ -1,14 +1,20 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Login from './login/login';
-import Tabbar from './tabbar/tabbar';
 import Wellcome from './wellcome/wellcome';
 import BookHistory from './menuItem/history';
+import NotificationMenu from './notification/mainviewNoti';
+import NotificationDetail from './notification/detail';
+import Drawermenu from './drawerMenu/mainview';
+import DetailFilm from './movies/item';
 
-export const HomeStack = StackNavigator({
+export default HomeStack = StackNavigator({
   Wellcome:{ screen: Wellcome },
-  Tabbar : { screen: Tabbar },
+  HomeView: { screen: Drawermenu },
   Login: { screen: Login },
+  DetailFilm: { screen: DetailFilm },
+  Notification: { screen: NotificationMenu },
+  NotificationDetail: { screen: NotificationDetail },
   BookHistory: { screen: BookHistory }
 },
 {

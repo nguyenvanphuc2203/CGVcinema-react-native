@@ -124,17 +124,20 @@ export default styles = StyleSheet.create({
   */
   view_main:{
     flex:1,
+    flexDirection:"column"
   },
   head_view:{
     position:'absolute',
     flex:1/10,
+    flexDirection:"row",
     justifyContent:'center',
     top:10,
     left:5,
     zIndex: 10
   },
   content_view:{
-    flex:10/10
+    flex:10/10,
+    backgroundColor:'#f5f5f5'
   },
   control_main:{
     flex:1,

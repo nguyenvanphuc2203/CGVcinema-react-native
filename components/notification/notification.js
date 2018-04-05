@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 
-export default class Notification extends React.Component {
+class Notification extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -33,20 +33,21 @@ export default class Notification extends React.Component {
     header: null
   })
   render() {
+    let { dispatch } = this.props;
     return (
-      <View style={{flex:1,backgroundColor:'black'}}>
+      <View style={{flex:1,backgroundColor:'#eaebee'}}>
         <FlatList
         data={this.state.notification}
         renderItem={({item}) =>
-        <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('Detail',{title:item.name,description:item.description})}}>
-          <View style={{flex:1,flexDirection:'column',backgroundColor:'#333',marginTop:10}}>
+        <TouchableOpacity onPress={()=>{ dispatch({type:'NOTIFICATION_DETAIL',title:item.title,description:item.description})}}>
+          <View style={{position:'relative',flex:1,flexDirection:'column',backgroundColor:'#fff',marginTop:10}}>
             <View >
               <Image
-              style={{width:'100%',height:300,flex: 1,resizeMode: 'contain'}}
+              style={{width:'100%',height:240,flex: 1,resizeMode: 'contain'}}
               source={{ uri: item.thumbnail }}
               />
             </View>
-            <View style={{flex:0.4,justifyContent:'center',paddingLeft:10}}>
+            <View style={{position:'absolute',bottom:1,flex:0.4,backgroundColor:'#333',opacity:50,justifyContent:'center',paddingLeft:10}}>
               <Text style={{color:'#fff'}}>{item.name}</Text>
               <Text style={{color:'#fff'}}>{item.description}</Text>
             </View>
@@ -58,3 +59,5 @@ export default class Notification extends React.Component {
     );
   }
 }
+
+export default connect(state=>state)(Notification)
