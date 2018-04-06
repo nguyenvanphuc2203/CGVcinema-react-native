@@ -17,7 +17,7 @@ export default class Wellcome extends Component{
 
   componentWillMount(){
     setTimeout(()=>{
-      Actions.Drawermenu()
+      Actions.Home()
     },1000);
   }
   static navigationOptions = () => ({

@@ -173,8 +173,21 @@ class Item extends Component<{}> {
           </View>
           
           {/* promotion  */}
+          <View style={{height:viewportHeight*0.05,marginTop:6}}>
+            <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
+              <View style={{flex:4}}>
+                <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
+              </View>
+              <View style={{flex:5}}></View>
+              <TouchableOpacity onPress={()=>{  Actions.Promotion() }}>
+                <View style={{flex:2,padding:2,borderRadius:9,borderWidth:1,borderColor:'#333'}}>
+                  <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-          <View style={{height:viewportHeight*0.3,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
+          <View style={{height:viewportHeight*0.3,paddingTop:10,backgroundColor:'#fff'}}>
             <FlatList
               horizontal
               data={[{title:'hihi'},{title:'hihi'},{title:'hihi'}]}

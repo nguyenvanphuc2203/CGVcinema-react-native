@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  Animated
 } from 'react-native';
 import BookHistory from './components/transaction/history';
 import Login from './components/login/login';
@@ -18,56 +19,73 @@ import Promotion from './components/promotion/mainviewPromotion';
 import PromotionDetail from './components/promotion/detail';
 import Home from './components/home/mainview';
 import DetailFilm from './components/movies/item';
+import Maps from './components/maps/maps';
+
+const transitionConfig = () => ({
+  screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps;
+      const { index } = scene;
+
+      const translateX = position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [layout.initWidth, 0, 0]
+      });
+
+      const opacity = position.interpolate({
+          inputRange: [index - 1, index - 0.99, index, index + 0.99, index + 1],
+          outputRange: [0, 1, 1, 0.3, 0]
+      });
+
+      return { opacity, transform: [{ translateX }] }
+  }
+})
 export default class App extends Component<{}> {
   render() {
     return (
       <Provider store={store} >
          <Router>
-          <Scene key="root">
+          <Scene key="root"
+          transitionConfig={transitionConfig}
+          >
             <Scene key="Wellcome"
               component={Wellcome}
               title="Wellcome"
-              initial
             />
             <Scene key="Login"
               component={Login}
-              title="Login"
-              initial
             />
             <Scene key="DetailFilm"
               component={DetailFilm}
-              title="DetailFilm"
-              initial
             />
             <Scene key="Promotion"
               component={Promotion}
               title="Promotion"
-              initial
             />
              <Scene key="PromotionDetail"
               component={PromotionDetail}
               title="PromotionDetail"
-              initial
             />
             <Scene key="Notification"
               component={Notification}
               title="Notification"
-              initial
             />
             <Scene key="NotificationDetail"
               component={NotificationDetail}
               title="NotificationDetail"
-              initial
             />
             <Scene key="Home"
               component={Home}
               title="Home"
-              initial
             />
             <Scene
               key="BookHistory"
               component={BookHistory}
-              title="Gray"
+              title="BookHistory"
+            />
+            <Scene
+              key="Maps"
+              component={Maps}
+              title="Maps"
             />
           </Scene>
         </Router>

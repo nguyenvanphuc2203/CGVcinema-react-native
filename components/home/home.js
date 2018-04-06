@@ -89,7 +89,7 @@ class Homeview extends Component{
 
               {/* <!-- Rạp Metiz - Chỉ đường --> */}
               <View style={{height:viewportHeight*0.07}}>
-                <View style={{flex:1,flexDirection:'row',padding:6,backgroundColor:'#fff'}}>
+                <TouchableOpacity onPress={()=>{  Actions.Maps() }} style={{flex:1,flexDirection:'row',padding:6,backgroundColor:'#fff'}}>
                   <View style={{flex:4,justifyContent:'center'}}>
                     <Text>Rạp Metiz - Chỉ đường</Text>
                   </View>
@@ -97,7 +97,7 @@ class Homeview extends Component{
                   <View style={{flex:1,justifyContent:'center'}}>
                     <Icon name="ios-navigate-outline" size={22} color="red" />
                   </View>
-                </View>
+                </TouchableOpacity>
               </View>
 
               {/* Tin NónG */}
@@ -108,7 +108,7 @@ class Homeview extends Component{
                     <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
                   </View>
                   <View style={{flex:5}}></View>
-                  <TouchableOpacity onPress={()=>{  Actions.Notification() }}>
+                  <TouchableOpacity onPress={()=>{  Actions.Promotion() }}>
                     <View style={{flex:2,padding:2,borderRadius:9,borderWidth:1,borderColor:'#333'}}>
                       <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                     </View>
