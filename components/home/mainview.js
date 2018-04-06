@@ -3,7 +3,7 @@ import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
 import ControlPanel from '../menu/controlpanel';
 import Swiper from 'react-native-swiper';
-import { MainRoute } from './mainRoute';
+import Home from './home';
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import {
   BackHandler,
   Alert
 } from 'react-native';
+import { Actions } from 'react-native-router-flux'; // New code
 
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
@@ -69,9 +70,9 @@ export default class Drawermenu extends Component{
                 />
               </TouchableOpacity>
               <View style={{flex:5}}></View>
-              <View style={{flex:1,justifyContent:'center',alignItems:'center',borderColor:'#fff',borderRadius:20,borderWidth:2}}>
+              <TouchableOpacity  onPress={ ()=>{Actions.Notification()}  } style={{flex:1,justifyContent:'center',alignItems:'center',borderColor:'#fff',borderRadius:20,borderWidth:2}}>
                 <Text style={{color:'#fff'}}>1</Text>
-              </View>
+              </TouchableOpacity>
               <TouchableOpacity style={{flex:2}} onPress={this.openControlPanel}>
                 <Image
                   style={{width:30,height:30,marginLeft:20}}
@@ -79,7 +80,7 @@ export default class Drawermenu extends Component{
                 />
               </TouchableOpacity>
             </View>
-              <MainRoute/>
+              <Home/>
           </View>
       </Drawer>
     );

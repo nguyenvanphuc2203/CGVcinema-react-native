@@ -11,12 +11,13 @@ import {
   AsyncStorage,
   StatusBar
 } from 'react-native';
+import { Actions } from 'react-native-router-flux'; // New code
 
 export default class Wellcome extends Component{
 
   componentWillMount(){
     setTimeout(()=>{
-      this.props.navigation.navigate('HomeView');
+      Actions.Drawermenu()
     },1000);
   }
   static navigationOptions = () => ({

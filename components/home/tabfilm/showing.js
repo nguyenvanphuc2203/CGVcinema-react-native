@@ -10,7 +10,7 @@ import {
   Alert,
   Dimensions
 } from 'react-native';
-
+import { Actions } from 'react-native-router-flux'; // New code
 import Carousel from 'react-native-snap-carousel';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
@@ -42,7 +42,7 @@ class Showing extends React.Component {
         var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         let { dispatch } = this.props
         return (
-            <TouchableOpacity onPress={()=>{ dispatch({type:'DETAIL_FILM',id:item.id}) }}>
+            <TouchableOpacity onPress={()=>{ Actions.DetailFilm({id:item.id}) }}>
             <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
                 <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
                 <Text  style={{color:'#fff',padding:2}}> { item.title }</Text>

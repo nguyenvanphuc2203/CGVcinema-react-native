@@ -17,7 +17,7 @@ import {
   FlatList
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import { Actions } from 'react-native-router-flux'; // New code
+
 class Notification extends React.Component {
   constructor(props){
     super(props);
@@ -39,17 +39,17 @@ class Notification extends React.Component {
         <FlatList
         data={this.state.notification}
         renderItem={({item}) =>
-        <TouchableOpacity onPress={()=>{ Actions.NotificationDetail({title:item.title,description:item.description}) }}>
-          <View style={{height:100,flexDirection:'row',backgroundColor:'#fff',marginTop:5}}>
-            <View style={{bottom:1,flex:1}}>
+        <TouchableOpacity onPress={()=>{ dispatch({type:'NOTIFICATION_DETAIL',title:item.title,description:item.description})}}>
+          <View style={{position:'relative',flex:1,flexDirection:'column',backgroundColor:'#fff',marginTop:10}}>
+            <View >
               <Image
               style={{width:'100%',height:240,flex: 1,resizeMode: 'contain'}}
               source={{ uri: item.thumbnail }}
               />
             </View>
-            <View style={{bottom:1,flex:2,opacity:50,justifyContent:'center',paddingLeft:10}}>
-              <Text style={{color:'#333'}}>{item.name}</Text>
-              <Text style={{color:'#333'}}>{item.description}</Text>
+            <View style={{position:'absolute',bottom:1,flex:0.4,backgroundColor:'#333',opacity:50,justifyContent:'center',paddingLeft:10}}>
+              <Text style={{color:'#fff'}}>{item.name}</Text>
+              <Text style={{color:'#fff'}}>{item.description}</Text>
             </View>
           </View>
         </TouchableOpacity>

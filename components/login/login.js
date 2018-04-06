@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   AsyncStorage
 } from 'react-native';
+import { Actions } from 'react-native-router-flux'; // New code
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Kohana } from 'react-native-textinput-effects';
 export default class Login extends Component{

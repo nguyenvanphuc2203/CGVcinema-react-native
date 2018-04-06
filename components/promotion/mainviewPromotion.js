@@ -3,7 +3,7 @@ import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
 import ControlPanel from '../menu/controlpanel';
 import Swiper from 'react-native-swiper';
-import  Notification from './notification';
+import  Promotion from './promotion';
 import { connect } from 'react-redux';
 import {
   View,
@@ -51,7 +51,7 @@ class Home extends Component{
                 <Icon name="ios-arrow-round-back" size={40} color="red" />
               </TouchableOpacity>
               <View style={{flex:7,justifyContent:'center'}}> 
-                <Text>Thông báo</Text>
+                <Text>Tin Mới & Ưu Đãi</Text>
               </View>
               <TouchableOpacity style={{flex:1}} onPress={this.openControlPanel}>
                 <Icon name="ios-menu" size={40} color="red" />
@@ -67,10 +67,8 @@ class Home extends Component{
                     <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                   </View>
                 </View>
-            </View>
-
-            <Notification/>
-
+              </View>
+              <Promotion/>
           </View>
       </Drawer>
     );

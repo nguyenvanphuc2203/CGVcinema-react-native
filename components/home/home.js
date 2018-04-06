@@ -3,6 +3,7 @@ import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
 import Swiper from 'react-native-swiper';
 import { connect }  from 'react-redux';
+import { Actions } from 'react-native-router-flux'; // New code
 import {
   View,
   Text,
@@ -12,7 +13,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Dimensions,
-  ScrollView
+  ScrollView,
+  RefreshControl
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Movies from './tab-film';
@@ -24,16 +26,34 @@ const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window'
 class Homeview extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      refreshing: false
+    }
   }
   static navigationOptions = () => ({
       header:null
   })
+  _onRefresh() {
+    this.setState({refreshing: true});
+    setTimeout(()=>{
+      this.setState({refreshing: false});
+    },1000)
+  }
   render(){
     let { dispatch } = this.props;
     return (
           <View style={styles.content_view}>
             {/* <!-- image slider --> */}
-            <ScrollView style={{backgroundColor:'#eaebee'}}>
+            <ScrollView 
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh.bind(this)}
+                />
+              }
+              ref='_scrollView' 
+              style={{backgroundColor:'#eaebee'}}
+            >
               <View style={{height:viewportHeight*0.25}}>
                 <Swiper
                   loadMinimal={true}
@@ -49,12 +69,10 @@ class Homeview extends Component{
                     />
                   </View>
                   <View style={styles.slide2}>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('BannerDetail',{title:'Ưu đãi 8-3',description:'giảm giá vé trong ngày 8-3'})}}>
                     <Image
-                    style={styles.image_swiper}
-                    source={require('../images/banner_film2.jpg')}
+                      style={styles.image_swiper}
+                      source={require('../images/banner_film2.jpg')}
                     />
-                    </TouchableOpacity>
                   </View>
                   <View style={styles.slide3}>
                     <Image
@@ -66,21 +84,23 @@ class Homeview extends Component{
               </View>
               {/* <!-- Tab Movies --> */}
               <View style={{height:viewportHeight*0.68}}>
-                <Movies screenProps={{ navigation: this.props.navigation }}/>
+                <Movies />
               </View>
-              <View style={{height:viewportHeight*0.06}}>
-                <View style={{flex:1,flexDirection:'row',padding:7,backgroundColor:'#fff'}}>
-                  <View style={{flex:4}}>
+
+              {/* <!-- Rạp Metiz - Chỉ đường --> */}
+              <View style={{height:viewportHeight*0.07}}>
+                <View style={{flex:1,flexDirection:'row',padding:6,backgroundColor:'#fff'}}>
+                  <View style={{flex:4,justifyContent:'center'}}>
                     <Text>Rạp Metiz - Chỉ đường</Text>
                   </View>
                   <View style={{flex:5}}></View>
-                  <View style={{flex:1}}>
+                  <View style={{flex:1,justifyContent:'center'}}>
                     <Icon name="ios-navigate-outline" size={22} color="red" />
                   </View>
                 </View>
               </View>
 
-              {/* Chỉ đường Rap Metiz */}
+              {/* Tin NónG */}
 
               <View style={{height:viewportHeight*0.05,marginTop:6}}>
                 <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
@@ -88,7 +108,7 @@ class Homeview extends Component{
                     <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
                   </View>
                   <View style={{flex:5}}></View>
-                  <TouchableOpacity onPress={()=>{ dispatch({type:'NOTIFICATION'}) }}>
+                  <TouchableOpacity onPress={()=>{  Actions.Notification() }}>
                     <View style={{flex:2,padding:2,borderRadius:9,borderWidth:1,borderColor:'#333'}}>
                       <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                     </View>
@@ -99,7 +119,7 @@ class Homeview extends Component{
               {/*Tin nóng khuyễn mãi */}
 
               <View style={{height:viewportHeight*0.4}}>
-                <TouchableOpacity style={{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'}} onPress={()=> { dispatch({type:'NOTIFICATION_DETAIL',title:'tin nóng',description:'hihi'}) }}>
+                <TouchableOpacity style={{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'}} onPress={()=> { Actions.NotificationDetail({title:'tin nóng',description:'hihi'}) }}>
                   <View style={{flex:6}}>
                       <Image
                         style={{width:'100%',height:'100%'}}
@@ -140,9 +160,11 @@ class Homeview extends Component{
                 <View style={{flex:1,flexDirection:'column',padding:5,justifyContent:'center',alignItems:'center'}}>
                   <Image
                     style={{width:110,height:45}}
-                    source={{uri:'https://i.imgur.com/6Yiyxhi.png'}}
+                    source={{uri:'https://i.imgur.com/bO9lG5j.png'}}
                   />
-                  <Icon name="ios-arrow-dropup-circle" size={50} color="#333" />
+                  <TouchableOpacity style={{marginTop:5}} onPress={() => { this.refs._scrollView.scrollTo(0); }}>
+                    <Icon name="ios-arrow-dropup-circle" size={50} color="#333" />
+                  </TouchableOpacity>
                 </View>
               </View>
             </ScrollView>

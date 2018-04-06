@@ -3,7 +3,7 @@ import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
 import ControlPanel from '../menu/controlpanel';
 import Swiper from 'react-native-swiper';
-import  MainRoute from './notification';
+import  Item from './item';
 import {
   View,
   Text,
@@ -65,7 +65,7 @@ export default class Movies extends Component{
                   </View>
                 </View>
               </View>
-              <MainRoute/>
+            <Item/>
           </View>
       </Drawer>
     );
