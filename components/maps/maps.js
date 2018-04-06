@@ -61,8 +61,7 @@ export default class Maps extends Component{
             (error) => {
                 alert(error.message)
             },
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 20000 }
-
+            { enableHighAccuracy: true, timeout: 2000, maximumAge: 3600000 }
         )
         
     }
@@ -101,7 +100,6 @@ export default class Maps extends Component{
                     this.state.gpsPosition.map(marker => (
                      <Marker draggable
                      coordinate={marker}
-                     image={require('../images/location.png')}
                      title='đây là vị trí của bạn'
                      description='clicked'
                      onDragEnd={(e) => this.setState({ coordinate: e.nativeEvent.coordinate })}

@@ -18,7 +18,9 @@ import NotificationDetail from './components/notification/detail';
 import Promotion from './components/promotion/mainviewPromotion';
 import PromotionDetail from './components/promotion/detail';
 import Home from './components/home/mainview';
-import DetailFilm from './components/movies/item';
+import DetailFilm from './components/movies/detail';
+import Showtimes from './components/movies/showtimes';
+
 import Maps from './components/maps/maps';
 
 const transitionConfig = () => ({
@@ -56,6 +58,9 @@ export default class App extends Component<{}> {
             />
             <Scene key="DetailFilm"
               component={DetailFilm}
+            />
+            <Scene key="Showtimes"
+              component={Showtimes}
             />
             <Scene key="Promotion"
               component={Promotion}

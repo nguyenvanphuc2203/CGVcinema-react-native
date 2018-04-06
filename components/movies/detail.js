@@ -52,7 +52,7 @@ class Item extends Component<{}> {
   ActivityIndicatorLoadingView() {
     return (
       <ActivityIndicator
-        color='#009688'
+        color='#333'
         size='large'
         style={{position: 'absolute',left: 0,right: 0,top: 0,bottom: 0,alignItems: 'center',justifyContent: 'center'}}
       />
@@ -127,7 +127,7 @@ class Item extends Component<{}> {
                 <Text style={{color:'#333',fontSize:15,fontWeight:'bold'}}>{this.state.data.title}</Text>
               </View>
               <View style={{flex:2,paddingRight:20}}>
-                <Button onPress={()=>{}} title="Đặt vé" color="red" ></Button>
+                <Button onPress={()=>{ Actions.Showtimes({title:this.state.data.title})}} title="Đặt vé" color="red" ></Button>
               </View>
             </View>
             <View style={{flex:2}}>
