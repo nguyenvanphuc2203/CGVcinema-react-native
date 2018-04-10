@@ -23,6 +23,7 @@ import Showtimes from './components/movies/showtimes';
 import Booking from './components/movies/booking';
 import Maps from './components/maps/maps';
 import Payment from './components/movies/payment';
+import Profile from './components/profile/profile';
 
 const transitionConfig = () => ({
   screenInterpolator: sceneProps => {
@@ -98,6 +99,11 @@ export default class App extends Component {
               key="Maps"
               component={Maps}
               title="Maps"
+            />
+            <Scene
+              key="Profile"
+              component={Profile}
+              title="Profile"
             />
           </Scene>
         </Router>

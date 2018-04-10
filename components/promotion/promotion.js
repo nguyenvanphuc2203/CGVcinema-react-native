@@ -17,6 +17,7 @@ import {
   FlatList
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
+import { Actions } from 'react-native-router-flux'; // New code
 
 class Notification extends React.Component {
   constructor(props){
@@ -39,7 +40,7 @@ class Notification extends React.Component {
         <FlatList
         data={this.state.notification}
         renderItem={({item}) =>
-        <TouchableOpacity onPress={()=>{ dispatch({type:'NOTIFICATION_DETAIL',title:item.title,description:item.description})}}>
+        <TouchableOpacity onPress={()=>{ Actions.PromotionDetail({title:item.title,description:item.description})}}>
           <View style={{position:'relative',flex:1,flexDirection:'column',backgroundColor:'#fff',marginTop:10}}>
             <View >
               <Image

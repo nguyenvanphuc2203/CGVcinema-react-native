@@ -59,11 +59,11 @@ class Home extends Component{
             </View>
             <View style={{flex:1/13,marginTop:6}}>
                 <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
-                  <View style={{flex:4}}>
+                  <View style={{flex:4,justifyContent:'center'}}>
                     <Text style={{fontWeight:'bold'}}> Chọn Rạp</Text>
                   </View>
                   <View style={{flex:5}}></View>
-                  <View style={{flex:2,padding:2}}>
+                  <View style={{flex:2,padding:2,justifyContent:'center'}}>
                     <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                   </View>
                 </View>

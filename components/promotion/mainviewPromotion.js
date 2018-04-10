@@ -58,7 +58,7 @@ class Home extends Component{
               </TouchableOpacity>
             </View>
             <View style={{flex:1/13,marginTop:6}}>
-                <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
+                <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff',justifyContent:'center'}}>
                   <View style={{flex:4}}>
                     <Text style={{fontWeight:'bold'}}> Chọn Rạp</Text>
                   </View>

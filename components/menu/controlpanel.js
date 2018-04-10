@@ -63,13 +63,13 @@ class ControlPanel extends Component{
               source={{uri:'https://i.imgur.com/vjb4kmB.png'}}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{ Actions.BookHistory() }} style={{}}>
+          <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{}}>
             <Image
              style={{width:60,height:60,borderRadius:30}}
              source={this.state.avatar}
              />
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{ Actions.BookHistory() }} style={{paddingLeft:30}}>
+          <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{paddingLeft:30}}>
           <Image
             style={{width:25,height:25}}
             source={{uri:'https://i.imgur.com/layk8nR.png'}}

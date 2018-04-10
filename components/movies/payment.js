@@ -24,8 +24,6 @@ export default class Payment extends Component{
     super(props);
     this.state = {
         totalpayment:0,
-        seat: ['A1','A2','A3','A4','A5','A6',
-        'A7','A8','A9','A10','A11','A12'],
         isAccept:true
     }
   }
@@ -55,13 +53,13 @@ export default class Payment extends Component{
                 />
             </View>
             <View style={{flex:6,padding:10}}>
-                <Text>{this.props.navigation.state.params.title}</Text>
-                <Text>{this.props.navigation.state.params.totalpayment}</Text>
+                <Text style={{fontWeight:'bold'}}>{this.props.navigation.state.params.title}</Text>
+                <Text style={{color:'red'}}>Tổng: {this.props.navigation.state.params.totalpayment} đ</Text>
                 <Text>Thứ ba 10-04-2018</Text>
                 <Text>Phòng Chiếu 03</Text>
                 <Text>20:00 ~ 21:45</Text>
                 <Text>Khách hàng trên 16 tuổi</Text>
-                <Text>Ghế : A8,A9</Text>
+                <Text>Ghế : {this.props.navigation.state.params.seatSelected.map(item => (<Text>{item} ,</Text>))}</Text>
             </View>
         </View>
         <View style={{flex:8/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}}>
@@ -194,9 +192,12 @@ export default class Payment extends Component{
                         </View>
                     </View>
                     <View style={{height:viewportHeight*0.15,padding:10 }}>
-                        <View style={{flexDirection:'row'}}>
+                        <View style={{flexDirection:'row',marginBottom:7}}>
                             <CheckBox onChange={()=>{this.setState({isAccept:false})}} />
-                            <Text>tôi đồng ý với điều khoản sử dụng và đang mua vé người co tuổi phù hợp.</Text>
+                            <Text style={{paddingRight:20}}>
+                            Tôi đồng ý với điều khoản sử dụng và đang mua vé người 
+                            co tuổi phù hợp.
+                            </Text>
                         </View>
                         <Button onPress={()=>{}} disabled={this.state.isAccept} title="Tôi đồng ý và tiếp tục" color="red" />
                     </View>
@@ -221,7 +222,8 @@ const stylePayment = StyleSheet.create({
     },
     itemright:{
         flex:4,
-        alignItems:'flex-end'
+        alignItems:'flex-end',
+        justifyContent:'center'
     },
     rowitem:{
         flex:1,

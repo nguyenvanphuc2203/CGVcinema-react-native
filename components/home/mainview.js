@@ -63,7 +63,7 @@ export default class Drawermenu extends Component{
         >
           <View style={styles.view_main}>
             <View style={styles.head_view}>
-              <TouchableOpacity style={{flex:2,paddingLeft:10}} >
+              <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{flex:2,paddingLeft:10}} >
                 <Image
                   style={{width:30,height:30,borderRadius:40}}
                   source={{uri:'https://i.imgur.com/ik7IrFf.jpg'}}

@@ -123,7 +123,7 @@ class Item extends Component<{}> {
           </View>
           <View style={{height:viewportHeight*0.3,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
             <View style={{flex:3,flexDirection:"row"}}>
-              <View style={{flex:8,paddingLeft:10,justifyContent:'center'}}>
+              <View style={{flex:8,paddingLeft:5,justifyContent:'center'}}>
                 <Text style={{color:'#333',fontSize:15,fontWeight:'bold'}}>{this.state.data.title}</Text>
               </View>
               <View style={{flex:2,paddingRight:20}}>
@@ -149,12 +149,12 @@ class Item extends Component<{}> {
             </View>
             <View style={{flex:6,flexDirection:"row",paddingTop:5}}>
               <View style={{flex:1,paddingLeft:10,justifyContent:'center'}}>
-                <Text style={{color:'#333',overflow:'hidden'}}>{this.state.data.overview}</Text>
+                <Text numberOfLines={5} style={{color:'#333',overflow:'hidden'}}>{this.state.data.overview}</Text>
               </View>
               
             </View>
           </View>
-          <View style={{height:viewportHeight*0.3,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
+          <View style={{height:viewportHeight*0.32,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
             <View style={{flexDirection:"row"}}>
                 <Image
                 style={{width:100,height:200,flex: 1,resizeMode: 'contain'}}
@@ -175,12 +175,12 @@ class Item extends Component<{}> {
           {/* promotion  */}
           <View style={{height:viewportHeight*0.05,marginTop:6}}>
             <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
-              <View style={{flex:4}}>
+              <View style={{flex:4,justifyContent:'center'}}>
                 <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
               </View>
               <View style={{flex:5}}></View>
               <TouchableOpacity onPress={()=>{  Actions.Promotion() }}>
-                <View style={{flex:2,padding:2,borderRadius:9,borderWidth:1,borderColor:'#333'}}>
+                <View style={{flex:2,padding:2,justifyContent:'center',borderRadius:9,borderWidth:1,borderColor:'#333'}}>
                   <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                 </View>
               </TouchableOpacity>
