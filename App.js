@@ -20,8 +20,9 @@ import PromotionDetail from './components/promotion/detail';
 import Home from './components/home/mainview';
 import DetailFilm from './components/movies/detail';
 import Showtimes from './components/movies/showtimes';
-
+import Booking from './components/movies/booking';
 import Maps from './components/maps/maps';
+import Payment from './components/movies/payment';
 
 const transitionConfig = () => ({
   screenInterpolator: sceneProps => {
@@ -41,7 +42,7 @@ const transitionConfig = () => ({
       return { opacity, transform: [{ translateX }] }
   }
 })
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store} >
@@ -61,6 +62,12 @@ export default class App extends Component<{}> {
             />
             <Scene key="Showtimes"
               component={Showtimes}
+            />
+            <Scene key="Booking"
+              component={Booking}
+            />
+            <Scene key="Payment"
+              component={Payment}
             />
             <Scene key="Promotion"
               component={Promotion}

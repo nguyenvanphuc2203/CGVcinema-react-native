@@ -27,22 +27,24 @@ import { Actions } from 'react-native-router-flux'; // New code
 import GridView from 'react-native-super-grid';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
-
+const TITLE_FILM = 'Phòng Chiếu 03';
 class ThuHai extends Component{
     render(){
+        console.log(this.props.navigation)
         return (
             <GridView
             itemDimension={viewportWidth/3}
             items={[1,2,3,4,5,6]}
             renderItem={item => (
-                <View style={{flex:1,padding:20,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
+                <TouchableOpacity onPress={ ()=>{ Actions.Booking({title:TITLE_FILM})} }
+                  style={{flex:1,padding:20,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
                     <View >
                          <Text>21:30</Text>   
                     </View>
                     <View style={{paddingTop:10}}>
                          <Text>Phòng Chiếu 03</Text>   
                     </View>
-                </View>
+                </TouchableOpacity>
             )}
             />
         )
@@ -86,6 +88,7 @@ class Item extends Component<{}> {
       data: [],
       isModalVisible: false
     };
+    TITLE_FILM = this.props.navigation.state.params.title;
   }
   static navigationOptions = ({navigation}) => ({
     header: null,
@@ -97,10 +100,6 @@ class Item extends Component<{}> {
     this._drawer.open()
   };
   render() {
-    const { params } = this.props.navigation.state;
-    var str = JSON.stringify(this.state.data.videos);
-    var trailer_url = String(str).substr(87, 11);
-    console.log(trailer_url)
     return (
       <Drawer
         type="overlay"
@@ -127,7 +126,7 @@ class Item extends Component<{}> {
             </View>
           </View>
           {/* View  */}
-        <TabShowTimes/>
+          <TabShowTimes/>
         </View>
     </Drawer>
         

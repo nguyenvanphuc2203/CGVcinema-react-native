@@ -25,6 +25,12 @@ class Notification extends React.Component {
       notification : [
         { 'name' :'Tặng 10000 vé xem phim', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img2.jpg'},
         { 'name' :'Tặng 1 combo bắp nước', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img.jpg'},
+        { 'name' :'Khai trương', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/media/slide_home/METIZ_KHAI_TRUONG_GRAND_OPENING_MEDIA-11_yLRkxW0.jpg'},
+        { 'name' :'Tặng 10000 vé xem phim', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img2.jpg'},
+        { 'name' :'Tặng 1 combo bắp nước', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img.jpg'},
+        { 'name' :'Khai trương', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/media/slide_home/METIZ_KHAI_TRUONG_GRAND_OPENING_MEDIA-11_yLRkxW0.jpg'},
+        { 'name' :'Tặng 10000 vé xem phim', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img2.jpg'},
+        { 'name' :'Tặng 1 combo bắp nước', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/static/assets/websites/images/voucher_img.jpg'},
         { 'name' :'Khai trương', 'description':'bộ phim được khởi chiếu trên toàn quốc','thumbnail':'https://uat.metiz.vn/media/slide_home/METIZ_KHAI_TRUONG_GRAND_OPENING_MEDIA-11_yLRkxW0.jpg'}
       ],
     }
