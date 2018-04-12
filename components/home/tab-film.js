@@ -33,7 +33,7 @@ export default TabNavigator({
       backgroundColor: '#f5f5f5',
     },
     tabStyle: {
-      height: 35, 
+      height: viewportHeight/21, 
     },
     labelStyle: {
       fontSize: 12,

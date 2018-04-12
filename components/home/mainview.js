@@ -63,19 +63,18 @@ export default class Drawermenu extends Component{
         >
           <View style={styles.view_main}>
             <View style={styles.head_view}>
-              <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{flex:2,paddingLeft:10}} >
+              <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{flex:7,justifyContent:'center',alignItems:'flex-start',paddingLeft:10}} >
                 <Image
-                  style={{width:30,height:30,borderRadius:40}}
+                  style={{width:viewportWidth/12,height:viewportWidth/12,borderRadius:viewportWidth/24}}
                   source={{uri:'https://i.imgur.com/ik7IrFf.jpg'}}
                 />
               </TouchableOpacity>
-              <View style={{flex:5}}></View>
               <TouchableOpacity  onPress={ ()=>{Actions.Notification()}  } style={{flex:1,justifyContent:'center',alignItems:'center',borderColor:'#fff',borderRadius:20,borderWidth:2}}>
                 <Text style={{color:'#fff'}}>1</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flex:2}} onPress={this.openControlPanel}>
+              <TouchableOpacity style={{flex:2,alignItems:'center'}} onPress={this.openControlPanel}>
                 <Image
-                  style={{width:30,height:30,marginLeft:20}}
+                  style={{width:viewportWidth/12,height:viewportWidth/12}}
                   source={require('../images/menu_icon.png')}
                 />
               </TouchableOpacity>

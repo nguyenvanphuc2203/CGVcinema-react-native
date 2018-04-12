@@ -29,12 +29,20 @@ import GridView from 'react-native-super-grid';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 const TITLE_FILM = 'Phòng Chiếu 03';
-class ThuHai extends Component{
+const date = new Date();
+const days = [
+  'Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy',
+  'Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+const current_day = days[date.getDay()];
+const current_fullday = date.getDate() + ' - ' + (date.getMonth()+1) + ' - ' + date.getFullYear()
+
+class TimesRooms extends Component{
     constructor(props){
       super(props);
+      console.log(this.props)
       this.state = {
-        thu:'Hai',
-        ngay:'10-12-2018',
+        thu: current_day,
+        ngay: current_fullday ,
         xuatchieu : [
           {time:"17:30",room:"03"},
           {time:"18:30",room:"01"},
@@ -47,7 +55,6 @@ class ThuHai extends Component{
       }
     }
     render(){
-        console.log(this.props.navigation)
         return (
           <View style={{flex:1,flexDirection:'column'}}>
           <View style={{flex:9}}>
@@ -56,7 +63,7 @@ class ThuHai extends Component{
               items={this.state.xuatchieu}
               renderItem={item => (
                   <TouchableOpacity onPress={ ()=>{ Actions.Booking({title:TITLE_FILM,time:item.time,room:item.room})} }
-                    style={{flex:1,padding:20,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
+                    style={{flex:1,padding:15,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
                       <View >
                           <Text>{item.time}</Text>   
                       </View>
@@ -67,12 +74,11 @@ class ThuHai extends Component{
               )}
             />
           </View>
-
           <View style={{flex:1,marginTop:6,backgroundColor:'#333'}}>
             <View style={{flex:1,flexDirection:'row'}}>
               <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                <Text style={{color:'#fff'}}>Thứ {this.state.thu} </Text>
-                <Text style={{color:'#fff'}}>{this.state.ngay}</Text>
+                <Text style={{color:'#fff'}}>{this.props.days} </Text>
+                <Text style={{color:'#fff'}}>{this.props.date}</Text>
               </View>
               <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
                 <Text style={{color:'#fff'}}>{this.state.xuatchieu.length} </Text>
@@ -86,13 +92,40 @@ class ThuHai extends Component{
 }
 
 const TabShowTimes = TabNavigator({
-    'Thứ 2': { screen: ThuHai },
-    'Thứ 3': { screen: ThuHai },
-    'Thứ 4': { screen: ThuHai },
-    'Thứ 5': { screen: ThuHai },
-    'Thứ 6': { screen: ThuHai },
-    'Thứ 7': { screen: ThuHai },
-    'Chủ nhật': { screen: ThuHai },
+    'Tab 1': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()]} />,
+      navigationOptions:{
+        title: days[date.getDay()]
+      } 
+    },
+    'Tab 2': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+1]} />,
+      navigationOptions:{
+        title: days[date.getDay()+1]
+      } 
+     },
+    'Tab 3': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+2]} />,
+      navigationOptions:{
+        title: days[date.getDay()+2]
+      } 
+     },
+    'Tab 4': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+3]} />,
+      navigationOptions:{
+       title: days[date.getDay()+3]
+      } 
+    },
+    'Tab 5': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+4]} />,
+      navigationOptions:{
+        title: days[date.getDay()+4]
+      } 
+     },
+    'Tab 6': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+5]} />,
+      navigationOptions:{
+        title: days[date.getDay()+5]
+      } 
+     },
+    'Tab 7': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+6]} />,
+      navigationOptions:{
+        title: days[date.getDay()+6]
+      }  },
 },
 {
   tabBarOptions: {

@@ -60,10 +60,7 @@ class Showing extends React.Component {
             renderItem={this._renderItem.bind(this)}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth*0.575}
-            firstItem={0}
             loop={true}
-            autoplay={true}
-            autoplayDelay={1000}
           />
       </View>
     );

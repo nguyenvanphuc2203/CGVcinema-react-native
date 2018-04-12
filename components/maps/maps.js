@@ -14,8 +14,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MapView,{ Marker,Callout, AnimatedRegion, Animated } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
-const origin = {latitude: 16.036818, longitude: 109.224299};
-const destination = {latitude: 16.036818, longitude: 108.224299};
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC6LKMM4OOR9TTHJbr81J1k4NnpGrddJig';
 
 export default class Maps extends Component{
@@ -23,14 +21,20 @@ export default class Maps extends Component{
         super(props);
         this.state = {
             initialPosition: {
-            latitude:16.036818, 
-            longitude:108.224299,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
+                latitude:16.036818, 
+                longitude:108.224299,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121,
             },
             coordinate:{
-            latitude: 0,
-            longitude: 0,
+                latitude: 0,
+                longitude: 0,
+            },
+            metizPosition:{
+                latitude:16.036818, 
+                longitude:108.224299,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121,
             },
             gpsPosition:{
                 latitude:0, 
@@ -53,15 +57,14 @@ export default class Maps extends Component{
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 }
-                    this.setState({ gpsPosition:gpsPosition })
-                    this.setState({ coordinate:coordinate })
+                this.setState({ gpsPosition:gpsPosition })
+                this.setState({ coordinate:coordinate })
                 },
             (error) => {
                 alert(error.message)
             },
             {enableHighAccuracy: false, timeout: 15000, maximumAge: 3600000}
         )
-        
     }
     getDirection(){
         this.setState({direction:true})
@@ -81,14 +84,16 @@ export default class Maps extends Component{
                 onDragEnd={(e) => this.setState({ coordinate: e.nativeEvent.coordinate })}
                 >
                 </Marker>
-            )
+            );
         }
         if ( this.state.direction ){
             direction = (
                 <MapViewDirections
-                    origin={origin}
-                    destination={destination}
+                    origin={this.state.gpsPosition}
+                    destination={this.state.initialPosition}
                     apikey={GOOGLE_MAPS_APIKEY}
+                    strokeWidth={4}
+                    strokeColor="red"
                 />
             )
         }
@@ -113,7 +118,7 @@ export default class Maps extends Component{
                     >
                     
                     <Marker draggable
-                        coordinate={this.state.initialPosition}
+                        coordinate={this.state.metizPosition}
                         image={{uri:'https://i.imgur.com/9ehbSrg.png',width:40,height:40}}
                         title='Đây là vị trí Metiz cinema'
                         description='clicked'

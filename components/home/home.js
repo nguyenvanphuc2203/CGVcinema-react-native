@@ -83,18 +83,17 @@ class Homeview extends Component{
                 </Swiper>
               </View>
               {/* <!-- Tab Movies --> */}
-              <View style={{height:viewportHeight*0.68}}>
+              <View style={{height:viewportHeight*0.65}}>
                 <Movies />
               </View>
 
               {/* <!-- Rạp Metiz - Chỉ đường --> */}
               <View style={{height:viewportHeight*0.07}}>
-                <TouchableOpacity onPress={()=>{  Actions.Maps() }} style={{flex:1,flexDirection:'row',padding:6,backgroundColor:'#fff'}}>
-                  <View style={{flex:4,justifyContent:'center'}}>
+                <TouchableOpacity onPress={()=>{  Actions.Maps() }} style={{flex:1,flexDirection:'row',padding:10,backgroundColor:'#fff'}}>
+                  <View style={{flex:9,justifyContent:'center'}}>
                     <Text>Rạp Metiz - Chỉ đường</Text>
                   </View>
-                  <View style={{flex:5}}></View>
-                  <View style={{flex:1,justifyContent:'center'}}>
+                  <View style={{flex:1,justifyContent:'center',alignItems:'flex-end'}}>
                     <Icon name="ios-navigate-outline" size={22} color="red" />
                   </View>
                 </TouchableOpacity>
@@ -103,13 +102,12 @@ class Homeview extends Component{
               {/* Tin NónG */}
 
               <View style={{height:viewportHeight*0.05,marginTop:6}}>
-                <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
-                  <View style={{flex:4}}>
+                <View style={{flex:1,flexDirection:'row',padding:10,backgroundColor:'#fff'}}>
+                  <View style={{flex:7,justifyContent:'center',alignItems:'flex-start'}}>
                     <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
                   </View>
-                  <View style={{flex:5}}></View>
                   <TouchableOpacity onPress={()=>{  Actions.Promotion() }}>
-                    <View style={{flex:2,padding:2,borderRadius:9,borderWidth:1,borderColor:'#333'}}>
+                    <View style={{flex:3,padding:2,justifyContent:'center',alignItems:'flex-end',borderRadius:9,borderWidth:1,borderColor:'#333'}}>
                       <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                     </View>
                   </TouchableOpacity>

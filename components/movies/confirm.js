@@ -1,78 +1,37 @@
 import React, { Component } from 'react';
 import styles from '../stylesheets';
-import { connect } from 'react-redux';
-import { postStatus } from '../store/actions'
 import {
   View,
   Text,
-  TouchableOpacity,
-  TouchableHighlight,
-  Image,
   StyleSheet,
-  TextInput,
-  ImageBackground,
+  Image,
   Button,
-  Alert,
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
   ScrollView,
-  Switch,
-  Dimensions
+  CheckBox
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 import Icon from 'react-native-vector-icons/Ionicons';
+import stylesheets from '../stylesheets';
+
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
-var ImagePicker = require('react-native-image-picker');
 
-// More info on all the options is below in the README...just some common use cases shown here
-var options = {
-  title: 'Select Avatar',
-  customButtons: [
-    {name: 'fb', title: 'Choose Photo from Facebook'},
-  ],
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
-};
-
-
-export default class Profile extends Component{
+export default class Confirm extends Component{
   constructor(props){
     super(props);
     this.state = {
-      avatarSource: {uri:'https://i.imgur.com/XlYLI23.jpg'}
+        totalpayment:0,
+        isAccept:true
     }
   }
   static navigationOptions = () => ({
     header: null,
   })
-  chooseImage(){
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
 
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: source
-        });
-      }
-    });
-  }
   render(){
-    let avatar = this.state.avatarSource;
     return (
       <View style={styles.view_main}>
         <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'}}>
@@ -80,61 +39,64 @@ export default class Profile extends Component{
             <Icon name="ios-arrow-round-back" size={40} color="red" />
           </TouchableOpacity>
           <View style={{flex:7,justifyContent:'center'}}> 
-            <Text> Thành viên Metiz </Text>
-            <Text style={{color:'#333',fontSize:10}}> Thông tin cá nhân</Text>
+            <Text> Thanh toán </Text>
+            <Text style={{color:'#333',fontSize:10}}> Xác nhận thông tin</Text>
           </View>
           <View style={{flex:2,justifyContent:'center'}}> 
           </View>
         </View>
-        <View style={{flex:4/13,flexDirection:'column',alignItems:'center',marginTop:5,backgroundColor:'#fff'}}>
-            <View style={{flex:7,padding:10}}>
-                <TouchableOpacity onPress={this.chooseImage.bind(this)}>
-                  <Image
-                    style={{width:100,height:100,borderRadius:50}}
-                    source={avatar}
-                   />
-                </TouchableOpacity>
+        <View style={{flex:4/13,flexDirection:'row',marginTop:5,backgroundColor:'#fff'}}>
+            <View style={{flex:4,padding:10}}>
+                <Image
+                    style={{width:'100%',height:'100%',flex: 1,resizeMode: 'contain'}}
+                    source={{uri:'https://image.tmdb.org/t/p/w500/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'}}
+                />
             </View>
-            <View style={{flex:3,padding:10}}>
-                <Text>Nguyễn Phúc</Text>
-                <Text>0912292829292</Text>
+            <View style={{flex:6,padding:10}}>
+                <Text style={{fontWeight:'bold'}}>{this.props.navigation.state.params.title}</Text>
+                <Text style={{color:'red'}}>Tổng: {this.props.navigation.state.params.totalpayment} đ</Text>
+                <Text>Thứ ba 10-04-2018</Text>
+                <Text>Phòng Chiếu 03</Text>
+                <Text>20:00 ~ 21:45</Text>
+                <Text>Khách hàng trên 16 tuổi</Text>
+                <Text>Ghế : {this.props.navigation.state.params.seatSelected.map(item => (<Text>{item.name} ,</Text>))}</Text>
             </View>
         </View>
         <View style={{flex:8/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}}>
             <View style={{flex:9,backgroundColor:'#eaebee'}}>
                 <ScrollView>
                     <View style={stylePayment.title}>
-                        <Text>Khuyến mãi của bạn</Text>
+                        <Text>THÔNG TIN VÉ</Text>
                     </View>
                     <View style={{height:viewportHeight*0.15,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Điểm Metiz </Text>
+                                    <Text >Số lượng vé </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
-                                    <Text >12.000 </Text>
+                                    <Text >{this.props.navigation.state.params.seatSelected.length} </Text>
                                 </View>
                             </View>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Thẻ Quà Tặng </Text>
+                                    <Text >Tổng </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
-                                    <Text > 1</Text>
+                                    <Text > {this.props.navigation.state.params.totalpayment} đ</Text>
                                 </View>
                                 
                             </View>
                         </View>
                     </View>
                     <View style={stylePayment.title}>
-                        <Text>Thông tin cá nhân</Text>
+                        <Text>PHƯƠNG THỨC GIẢM GIÁ</Text>
                     </View>
                     <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Thông tin tài khoản </Text>
+                                    <Text >Voucher Metiz </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#333" />
@@ -143,12 +105,12 @@ export default class Profile extends Component{
                             </View>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Đổi mật khẩu </Text>
+                                    <Text >Thẻ Quà Tặng </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#333" />
-                                </View>
-                                
+                                </View>                                
+
                             </View>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
@@ -162,32 +124,41 @@ export default class Profile extends Component{
                         </View>
                     </View>
                     <View style={stylePayment.title}>
-                        <Text>LỊCH SỬ</Text>
+                        <Text>TỔNG KẾT</Text>
                     </View>
-                    <View style={{height:viewportHeight*0.14,marginTop:5,backgroundColor:'#fff'}}>
+                    <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Lịch sử giao dịch </Text>
+                                    <Text >Tổng Cộng </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
-                                    <Text >12.000 đ </Text>
+                                    <Text >90.000 đ </Text>
                                 </View>
                                 
                             </View>
                             <View style={stylePayment.rowitem}>
                                 <View style={stylePayment.itemleft}>
-                                    <Text >Phim đã xem </Text>
+                                    <Text >Giảm Giá </Text>
                                 </View>
                                 <View style={stylePayment.itemright}>
-                                    <Text > 2 </Text>
+                                    <Text > 0 đ</Text>
+                                </View>
+                                
+                            </View>
+                            <View style={stylePayment.rowitem}>
+                                <View style={stylePayment.itemleft}>
+                                    <Text >Còn lại </Text>
+                                </View>
+                                <View style={stylePayment.itemright}>
+                                    <Text > 90.000 đ</Text>
                                 </View>
                                 
                             </View>
                         </View>
                     </View>
                     <View style={stylePayment.title}>
-                        <Text>LIÊN KẾT TÀI KHOẢN NGÂN HÀNG</Text>
+                        <Text>THANH TOÁN</Text>
                     </View>
                     <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                     <View style={{flex:1,flexDirection:'column'}}>
@@ -219,6 +190,16 @@ export default class Profile extends Component{
                                 
                             </View>
                         </View>
+                    </View>
+                    <View style={{height:viewportHeight*0.15,padding:10 }}>
+                        <View style={{flexDirection:'row',marginBottom:7}}>
+                            <CheckBox onChange={()=>{this.setState({isAccept:false})}} />
+                            <Text style={{paddingRight:20}}>
+                            Tôi đồng ý với điều khoản sử dụng và đang mua vé người 
+                            co tuổi phù hợp.
+                            </Text>
+                        </View>
+                        <Button onPress={()=>{ Actions.Payment() }} disabled={this.state.isAccept} title="Tôi đồng ý và tiếp tục" color="red" />
                     </View>
                 </ScrollView>
             </View>

@@ -46,7 +46,6 @@ class ControlPanel extends Component{
     }
   }
   login(){
-    let { dispatch } = this.props;
     Actions.Login()
   }
   render(){
@@ -144,26 +143,6 @@ class ControlPanel extends Component{
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View style={{flex:2/10,flexDirection:"row"}}>
-          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_member.png')} />
-            <Text style={{color:'#fff'}}>Thẻ thành viên</Text>
-          </View>
-          <TouchableOpacity onPress={()=>{console.log(this.props);this.props.navigation.navigate('Notification')}} style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_gift.png')} />
-            <Text style={{color:'#fff'}}>Ưu đãi và quà tặng</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{flex:2/10,flexDirection:"row"}}>
-          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_cinema.png')} />
-            <Text style={{color:'#fff'}}>Rạp metiz</Text>
-          </View>
-          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'black',margin:2}}>
-            <Image style={{width:30,height:30,marginBottom:3}} source={require('../images/icon_info.png')} />
-            <Text style={{color:'#fff'}}>Help</Text>
-          </View>
-        </View> */}
         </ImageBackground>
       </View>
     )

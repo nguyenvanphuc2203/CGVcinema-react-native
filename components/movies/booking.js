@@ -35,7 +35,9 @@ export default class BookHistory extends Component{
             {name:'A12',toggle:false}
         ],
         toggle:false,
-        seatSelected:[]
+        seatSelected:[],
+        seatPayment:[]
+        
     }
   }
   static navigationOptions = () => ({
@@ -76,7 +78,7 @@ export default class BookHistory extends Component{
                                 } 
                                 else{
                                     seat.toggle = true;
-                                    this.state.seatSelected.push(seat.name);
+                                    if (this.state.seatSelected.indexOf(seat.name) === -1 ) this.state.seatSelected.push(seat.name);
                                     this.setState({totalpayment:this.state.totalpayment+=45000 ,seat:this.state.seat})
                                 }
                             }} 
@@ -101,7 +103,15 @@ export default class BookHistory extends Component{
                     <Text style={{fontWeight:'bold',color:'red'}}>{this.state.totalpayment} đ</Text>
                 </View>
                 <View style={{flex:3,justifyContent:'center'}}>
-                    <Button onPress={()=>{ (this.state.totalpayment === 0 ) ? alert('Vui lòng chọn ghế ','khoan đã..') : Actions.Payment({title:this.props.navigation.state.params.title,totalpayment:this.state.totalpayment,seatSelected:this.state.seatSelected}) }} title="thanh toán" color="red" />
+                    <Button onPress={()=>{ 
+                        (this.state.totalpayment === 0 ) ? 
+                        alert('Vui lòng chọn ghế ','khoan đã..') : 
+                        Actions.Confirm({
+                            title:this.props.navigation.state.params.title,
+                            totalpayment:this.state.totalpayment,
+                            seatSelected:this.state.seat.filter(seat => seat.toggle )
+                        }) 
+                    }} title="thanh toán" color="red" />
                 </View>
             </View>
         </View>

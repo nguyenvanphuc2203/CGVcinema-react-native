@@ -47,23 +47,22 @@ class Home extends Component{
         >
           <View style={styles.view_main}>
             <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#fff'}}>
-              <TouchableOpacity onPress={()=>{ Actions.pop() }} style={{flex:1,paddingLeft:10}} >
+              <TouchableOpacity onPress={()=>{ Actions.pop() }} style={{flex:1,justifyContent:'center',paddingLeft:10}} >
                 <Icon name="ios-arrow-round-back" size={40} color="red" />
               </TouchableOpacity>
               <View style={{flex:7,justifyContent:'center'}}> 
                 <Text>Thông báo</Text>
               </View>
-              <TouchableOpacity style={{flex:1}} onPress={this.openControlPanel}>
+              <TouchableOpacity style={{flex:1,justifyContent:'center',alignItems:'center'}} onPress={this.openControlPanel}>
                 <Icon name="ios-menu" size={40} color="red" />
               </TouchableOpacity>
             </View>
             <View style={{flex:1/13,marginTop:6}}>
                 <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
-                  <View style={{flex:4,justifyContent:'center'}}>
+                  <View style={{flex:8,justifyContent:'center'}}>
                     <Text style={{fontWeight:'bold'}}> Chọn Rạp</Text>
                   </View>
-                  <View style={{flex:5}}></View>
-                  <View style={{flex:2,padding:2,justifyContent:'center'}}>
+                  <View style={{flex:2,padding:2,justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                   </View>
                 </View>

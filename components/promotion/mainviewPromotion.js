@@ -47,13 +47,13 @@ class Home extends Component{
         >
           <View style={styles.view_main}>
             <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#fff'}}>
-              <TouchableOpacity onPress={()=>{ Actions.pop() }} style={{flex:1,paddingLeft:10}} >
+              <TouchableOpacity onPress={()=>{ Actions.pop() }} style={{flex:1,justifyContent:'center',paddingLeft:10}} >
                 <Icon name="ios-arrow-round-back" size={40} color="red" />
               </TouchableOpacity>
               <View style={{flex:7,justifyContent:'center'}}> 
                 <Text>Tin Mới & Ưu Đãi</Text>
               </View>
-              <TouchableOpacity style={{flex:1}} onPress={this.openControlPanel}>
+              <TouchableOpacity style={{flex:1,justifyContent:'center'}} onPress={this.openControlPanel}>
                 <Icon name="ios-menu" size={40} color="red" />
               </TouchableOpacity>
             </View>

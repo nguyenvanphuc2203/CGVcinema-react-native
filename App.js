@@ -22,6 +22,7 @@ import DetailFilm from './components/movies/detail';
 import Showtimes from './components/movies/showtimes';
 import Booking from './components/movies/booking';
 import Maps from './components/maps/maps';
+import Confirm from './components/movies/confirm';
 import Payment from './components/movies/payment';
 import Profile from './components/profile/profile';
 
@@ -66,6 +67,9 @@ export default class App extends Component {
             />
             <Scene key="Booking"
               component={Booking}
+            />
+            <Scene key="Confirm"
+              component={Confirm}
             />
             <Scene key="Payment"
               component={Payment}
