@@ -59,7 +59,7 @@ export default class Confirm extends Component{
                 <Text>Phòng Chiếu 03</Text>
                 <Text>20:00 ~ 21:45</Text>
                 <Text>Khách hàng trên 16 tuổi</Text>
-                <Text>Ghế : {this.props.navigation.state.params.seatSelected.map(item => (<Text>{item.name} ,</Text>))}</Text>
+                <Text>Ghế : {this.props.navigation.state.params.seatSelected.map(item => (<Text key={item.name} >{item.name} ,</Text>))}</Text>
             </View>
         </View>
         <View style={{flex:8/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}}>
@@ -199,7 +199,7 @@ export default class Confirm extends Component{
                             co tuổi phù hợp.
                             </Text>
                         </View>
-                        <Button onPress={()=>{ Actions.Payment() }} disabled={this.state.isAccept} title="Tôi đồng ý và tiếp tục" color="red" />
+                        <Button onPress={()=>{ Actions.Payment({amount:this.props.navigation.state.params.totalpayment}) }} disabled={this.state.isAccept} title="Tôi đồng ý và tiếp tục" color="red" />
                     </View>
                 </ScrollView>
             </View>

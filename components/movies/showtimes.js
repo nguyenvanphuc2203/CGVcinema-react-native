@@ -29,20 +29,31 @@ import GridView from 'react-native-super-grid';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 const TITLE_FILM = 'Phòng Chiếu 03';
-const date = new Date();
-const days = [
+const ONE_DAY_IN_MILISECOND = (24 * 60 * 60 * 1000);
+var date = new Date();
+var days = [
   'Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy',
   'Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
-const current_day = days[date.getDay()];
-const current_fullday = date.getDate() + ' - ' + (date.getMonth()+1) + ' - ' + date.getFullYear()
+var current_day = days[date.getDay()];
+var current_date = date.getDate() + ' - ' + (date.getMonth()+1) + ' - ' + date.getFullYear()
+var nextday1 = new Date(date.getTime() + (ONE_DAY_IN_MILISECOND));
+var nextday1_date = nextday1.getDate() + ' - ' + (nextday1.getMonth()+1) + ' - ' + nextday1.getFullYear()
+var nextday2 = new Date(date.getTime() + (2*ONE_DAY_IN_MILISECOND));
+var nextday2_date = nextday2.getDate() + ' - ' + (nextday2.getMonth()+1) + ' - ' + nextday2.getFullYear()
+var nextday3 = new Date(date.getTime() + (3*ONE_DAY_IN_MILISECOND));
+var nextday3_date = nextday3.getDate() + ' - ' + (nextday3.getMonth()+1) + ' - ' + nextday3.getFullYear()
+var nextday4 = new Date(date.getTime() + (4*ONE_DAY_IN_MILISECOND));
+var nextday4_date = nextday4.getDate() + ' - ' + (nextday4.getMonth()+1) + ' - ' + nextday4.getFullYear()
+var nextday5 = new Date(date.getTime() + (5*ONE_DAY_IN_MILISECOND));
+var nextday5_date = nextday5.getDate() + ' - ' + (nextday5.getMonth()+1) + ' - ' + nextday5.getFullYear()
+var nextday6 = new Date(date.getTime() + (6*ONE_DAY_IN_MILISECOND));
+var nextday6_date = nextday6.getDate() + ' - ' + (nextday6.getMonth()+1) + ' - ' + nextday6.getFullYear()
 
 class TimesRooms extends Component{
     constructor(props){
       super(props);
       console.log(this.props)
       this.state = {
-        thu: current_day,
-        ngay: current_fullday ,
         xuatchieu : [
           {time:"17:30",room:"03"},
           {time:"18:30",room:"01"},
@@ -77,7 +88,7 @@ class TimesRooms extends Component{
           <View style={{flex:1,marginTop:6,backgroundColor:'#333'}}>
             <View style={{flex:1,flexDirection:'row'}}>
               <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                <Text style={{color:'#fff'}}>{this.props.days} </Text>
+                <Text style={{color:'#fff'}}>{this.props.day} </Text>
                 <Text style={{color:'#fff'}}>{this.props.date}</Text>
               </View>
               <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
@@ -92,37 +103,37 @@ class TimesRooms extends Component{
 }
 
 const TabShowTimes = TabNavigator({
-    'Tab 1': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()]} />,
+    'Tab 1': { screen: props => <TimesRooms date={current_date} day={days[date.getDay()]+' (Hôm nay)'} />,
       navigationOptions:{
         title: days[date.getDay()]
       } 
     },
-    'Tab 2': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+1]} />,
+    'Tab 2': { screen: props => <TimesRooms date={nextday1_date} day={days[date.getDay()+1]} />,
       navigationOptions:{
         title: days[date.getDay()+1]
       } 
      },
-    'Tab 3': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+2]} />,
+    'Tab 3': { screen: props => <TimesRooms date={nextday2_date} day={days[date.getDay()+2]} />,
       navigationOptions:{
         title: days[date.getDay()+2]
       } 
      },
-    'Tab 4': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+3]} />,
+    'Tab 4': { screen: props => <TimesRooms date={nextday3_date} day={days[date.getDay()+3]} />,
       navigationOptions:{
        title: days[date.getDay()+3]
       } 
     },
-    'Tab 5': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+4]} />,
+    'Tab 5': { screen: props => <TimesRooms date={nextday4_date} day={days[date.getDay()+4]} />,
       navigationOptions:{
         title: days[date.getDay()+4]
       } 
      },
-    'Tab 6': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+5]} />,
+    'Tab 6': { screen: props => <TimesRooms date={nextday5_date} day={days[date.getDay()+5]} />,
       navigationOptions:{
         title: days[date.getDay()+5]
       } 
      },
-    'Tab 7': { screen: props => <TimesRooms date={current_fullday} days={days[date.getDay()+6]} />,
+    'Tab 7': { screen: props => <TimesRooms date={nextday6_date} day={days[date.getDay()+6]} />,
       navigationOptions:{
         title: days[date.getDay()+6]
       }  },
@@ -133,11 +144,9 @@ const TabShowTimes = TabNavigator({
     activeTintColor: '#e9ebee',
     inactiveTintColor:'#fff',
     activeTabStyle: {
-      color:"#fff",
       backgroundColor: 'red',
     },
     tabStyle: {
-      color:"#e9ebee",
       backgroundColor: 'black',
       height: 40, 
     },
