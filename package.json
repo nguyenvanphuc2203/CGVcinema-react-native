@@ -12,6 +12,7 @@
     "query-string": "^6.0.0",
     "react": "16.2.0",
     "react-native": "0.51.0",
+    "react-native-animatable": "^1.2.4",
     "react-native-deprecated-custom-components": "^0.1.1",
     "react-native-drawer": "^2.5.0",
     "react-native-fontawesome": "^5.7.0",

@@ -20,7 +20,8 @@ import {
   Dimensions,
   RefreshControl,
   FlatList,
-  NetInfo
+  NetInfo,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux'; // New code
@@ -54,7 +55,15 @@ class Item extends Component<{}> {
       }
       else
       {
-          alert('network fail!')
+        Alert.alert(
+          'Bạn đang Offline',
+          'Vui lòng kết nối mạng để sử dụng!!', [{
+              text: 'OK',
+              onPress: () => Actions.pop()
+          }, ], {
+              cancelable: false
+          }
+      )
       }
   });
     

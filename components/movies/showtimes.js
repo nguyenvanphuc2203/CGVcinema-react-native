@@ -26,6 +26,8 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux'; // New code
 import GridView from 'react-native-super-grid';
+import * as Animatable from 'react-native-animatable';
+
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 const TITLE_FILM = 'Phòng Chiếu 03';
@@ -75,7 +77,8 @@ class TimesRooms extends Component{
               itemDimension={viewportWidth/3}
               items={this.state.xuatchieu}
               renderItem={item => (
-                  <TouchableOpacity onPress={ ()=>{ Actions.Booking({title:TITLE_FILM,time:item.time,room:item.room})} }
+                  <TouchableOpacity 
+                    onPress={ ()=>{ Actions.Booking({title:TITLE_FILM,time:item.time,room:item.room})} }
                     style={{flex:1,padding:15,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
                       <View >
                           <Text>{item.time}</Text>   

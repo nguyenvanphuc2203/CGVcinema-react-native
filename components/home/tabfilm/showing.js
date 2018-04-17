@@ -44,7 +44,16 @@ class Showing extends React.Component {
       }
       else
       {
-          alert('network fail!')
+        Alert.alert(
+          'Không có kết nối mạng',
+          'Vui lòng kết nối mạng để sử dụng?', [{
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+          } ], {
+              cancelable: false
+          }
+        )
       }
   });
     

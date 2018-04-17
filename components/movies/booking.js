@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 import Icon from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -146,8 +147,8 @@ export default class BookHistory extends Component{
             <View style={style.result}>
                 <View style={style.film}>
                     <Text style={{fontWeight:'bold'}}>{this.props.navigation.state.params.title}</Text>
-                    <Text >2D Phụ đề việt</Text>
-                    <Text style={{fontWeight:'bold',color:'red'}}>{this.state.totalpayment} đ</Text>
+                    <Text>2D Phụ đề việt</Text>
+                    <Animatable.Text animation="pulse" easing="ease-in" direction="alternate" iterationCount="infinite" style={{fontWeight:'bold',color:'red',fontSize:15}}>{this.state.totalpayment} đ</Animatable.Text>
                 </View>
                 <View style={{flex:3,justifyContent:'center'}}>
                     <Button onPress={()=>{ 
