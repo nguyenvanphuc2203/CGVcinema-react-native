@@ -43,6 +43,10 @@ export default class Maps extends Component{
             direction:false
         }
     }
+    /**
+     * get current position 
+     * set current position to state 
+     */
     getGPS(){
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -66,6 +70,10 @@ export default class Maps extends Component{
             {enableHighAccuracy: false, timeout: 15000, maximumAge: 3600000}
         )
     }
+    /**
+     * set state direction = true
+     * draw direction 
+     */
     getDirection(){
         this.setState({direction:true})
     }

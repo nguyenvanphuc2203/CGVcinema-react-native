@@ -24,7 +24,6 @@ import Booking from './components/movies/booking';
 import Maps from './components/maps/maps';
 import Confirm from './components/movies/confirm';
 import Payment from './components/movies/payment';
-import SuccessPayment from './components/movies/successPayment';
 import Profile from './components/profile/profile';
 
 const transitionConfig = () => ({
@@ -74,9 +73,6 @@ export default class App extends Component {
             />
             <Scene key="Payment"
               component={Payment}
-            />
-            <Scene key="SuccessPayment"
-              component={SuccessPayment}
             />
             <Scene key="Promotion"
               component={Promotion}

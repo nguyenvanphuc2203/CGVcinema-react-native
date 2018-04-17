@@ -21,18 +21,18 @@ export default class BookHistory extends Component{
     this.state = {
         totalpayment:0,
         seat: [
-            {name:'A1',toggle:false},
-            {name:'A2',toggle:false},
-            {name:'A3',toggle:false},
-            {name:'A4',toggle:false},
-            {name:'A5',toggle:false},
-            {name:'A6',toggle:false},
-            {name:'A7',toggle:false},
-            {name:'A8',toggle:false},
-            {name:'A9',toggle:false},
-            {name:'A10',toggle:false},
-            {name:'A11',toggle:false},
-            {name:'A12',toggle:false}
+            {name:'A1',toggle:false,booked:false},
+            {name:'A2',toggle:false,booked:true},
+            {name:'A3',toggle:false,booked:true},
+            {name:'A4',toggle:false,booked:false},
+            {name:'A5',toggle:false,booked:false},
+            {name:'A6',toggle:false,booked:false},
+            {name:'A7',toggle:false,booked:false},
+            {name:'A8',toggle:false,booked:false},
+            {name:'A9',toggle:false,booked:false},
+            {name:'A10',toggle:false,booked:false},
+            {name:'A11',toggle:false,booked:false},
+            {name:'A12',toggle:false,booked:false}
         ],
         seatB: [
             {name:'A1',toggle:false},
@@ -65,7 +65,6 @@ export default class BookHistory extends Component{
         toggle:false,
         seatSelected:[],
         seatPayment:[]
-        
     }
   }
   static navigationOptions = () => ({
@@ -75,42 +74,50 @@ export default class BookHistory extends Component{
   render(){
     return (
       <View style={styles.view_main}>
-        <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'}}>
-          <TouchableOpacity onPress={()=>{ Actions.pop()}} style={{flex:1,paddingLeft:10,justifyContent:'center'}} >
+        <View style={style.navigation}>
+          <TouchableOpacity onPress={()=>{ Actions.pop()}} style={style.backIcon} >
             <Icon name="ios-arrow-round-back" size={40} color="red" />
           </TouchableOpacity>
-          <View style={{flex:7,justifyContent:'center'}}> 
+          <View style={style.navigationTitle}> 
             <Text> Chọn Nghế </Text>
-            <Text style={{color:'#333',fontSize:10}}> {this.props.navigation.state.params.time} - Phòng Chiếu {this.props.navigation.state.params.room}</Text>
+            <Text style={{color:'#333',fontSize:10}}> 
+                {this.props.navigation.state.params.time} - 
+                Phòng Chiếu {this.props.navigation.state.params.room}
+            </Text>
           </View>
-          <View style={{flex:2,justifyContent:'center'}}> 
+          <View style={style.menuIcon}> 
           </View>
         </View>
       
-        <View style={{flex:12/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}}>
-            <View style={{flex:9,padding:20,backgroundColor:'#333'}}>
-                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                        <View style={{width:'70%',height:'50%',justifyContent:'center',alignItems:'center',margin:3,backgroundColor:'#fff'}}>
+        <View style={style.container}>
+            <View style={style.seatContainer}>
+                <View style={style.screen}>
+                        <View style={style.screenText}>
                             <Text> MÀN HÌNH CHÍNH </Text>
                         </View>
                 </View>
-                <View style={{flex:7,flexDirection:'column'}}>
-                    <View style={{flex:1,flexDirection:'row'}}>
+                <View style={style.seatSection}>
+                    <View style={style.seatRow}>
                         {this.state.seat.map(seat => (
                             <TouchableOpacity
                             key={seat.name} 
                             onPress={()=>{
-                                if ( seat.toggle ){
-                                    seat.toggle = false;
-                                    this.setState({totalpayment:this.state.totalpayment-=45000 ,seat:this.state.seat})
-                                } 
-                                else{
-                                    seat.toggle = true;
-                                    if (this.state.seatSelected.indexOf(seat.name) === -1 ) this.state.seatSelected.push(seat.name);
-                                    this.setState({totalpayment:this.state.totalpayment+=45000 ,seat:this.state.seat})
+                                /** 
+                                 * handle select seat 
+                                 * count amount payment
+                                 */
+                                if (!seat.booked){
+                                    if ( seat.toggle ){
+                                        seat.toggle = false;
+                                        this.setState({totalpayment:this.state.totalpayment-=45000 ,seat:this.state.seat})
+                                    } 
+                                    else{
+                                        seat.toggle = true;
+                                        this.setState({totalpayment:this.state.totalpayment+=45000 ,seat:this.state.seat})
+                                    }
                                 }
                             }} 
-                            style={[styleBooking.seat, seat.toggle && styleBooking.seatSelected]}
+                            style={[style.seat, seat.toggle && style.seatSelected, seat.booked && style.seatBooked]}
                             >
                                 <Text style={{fontSize:10}}> {seat.name} </Text>
                             </TouchableOpacity>      
@@ -118,14 +125,26 @@ export default class BookHistory extends Component{
                         )}
                     </View>
                 </View>
-                <View style={{flex:2,flexDirection:'column'}}>
-                    <View>
-
+                <View style={style.seatType}>
+                    <View style={style.seatTypeItem}>
+                        <View style={style.seat}>
+                        </View>
+                        <Text style={{color:'#fff'}}> Ghế Chưa chọn</Text> 
+                    </View>
+                    <View style={style.seatTypeItem}>
+                        <View style={[style.seat,style.seatBooked]}>
+                        </View>
+                        <Text style={{color:'#fff'}}> Ghế Đã đặt</Text>
+                    </View>
+                    <View style={style.seatTypeItem}>
+                        <View style={[style.seat,style.seatSelected]}>
+                        </View>
+                        <Text style={{color:'#fff'}}> Ghế Đang chọn</Text>
                     </View>
                 </View>
             </View>
-            <View style={{flex:1,padding:10,flexDirection:'row',backgroundColor:'#fff'}}>
-                <View style={{flex:7,justifyContent:'center'}}>
+            <View style={style.result}>
+                <View style={style.film}>
                     <Text style={{fontWeight:'bold'}}>{this.props.navigation.state.params.title}</Text>
                     <Text >2D Phụ đề việt</Text>
                     <Text style={{fontWeight:'bold',color:'red'}}>{this.state.totalpayment} đ</Text>
@@ -148,7 +167,7 @@ export default class BookHistory extends Component{
   }
 }
 
-const styleBooking = StyleSheet.create({
+const style = StyleSheet.create({
     seat:{
         width:(viewportWidth-92)/12,
         height:25,
@@ -160,5 +179,50 @@ const styleBooking = StyleSheet.create({
     },
     seatSelected:{
         backgroundColor:'red'
-    }
+    },
+    seatBooked:{
+        backgroundColor:'gray'
+    },
+    navigation:{
+        flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'
+    },
+    backIcon:{
+        flex:1,paddingLeft:10,justifyContent:'center'
+    },
+    menuIcon:{
+        flex:2,justifyContent:'center'
+    },
+    navigationTitle:{
+        flex:7,justifyContent:'center'
+    },
+    container:{
+        flex:12/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'
+    },
+    seatContainer:{
+        flex:9,padding:20,backgroundColor:'#333'
+    },
+    screen:{
+        flex:1,justifyContent:'center',alignItems:'center'
+    },
+    screenText:{
+        width:'70%',height:'50%',justifyContent:'center',alignItems:'center',margin:3,backgroundColor:'#fff'
+    },
+    seatSection:{
+        flex:7,flexDirection:'column'
+    },
+    seatRow:{
+        flex:1,flexDirection:'row'
+    },
+    seatType:{
+        flex:2,flexDirection:'column'
+    },
+    seatTypeItem:{
+        flex:1,flexDirection:'row'
+    },
+    result:{
+        flex:1,padding:10,flexDirection:'row',backgroundColor:'#fff'
+    },
+    film:{
+        flex:7,justifyContent:'center'
+    },
 })

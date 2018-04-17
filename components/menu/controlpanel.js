@@ -23,7 +23,7 @@ class ControlPanel extends Component{
     }
   }
   async componentWillMount(){
-    //check login
+    // check login from localStorage 
     try {
       const value = await AsyncStorage.getItem('@LoginMetiz:key');
         if (value !== null){
@@ -35,6 +35,7 @@ class ControlPanel extends Component{
       }
   }
   async logout(){
+    // logout from device , remove variable in localStorage 
     try {
       await AsyncStorage.removeItem('@LoginMetiz:key');
       console.log('Logout !');
@@ -46,11 +47,10 @@ class ControlPanel extends Component{
     }
   }
   login(){
+    // navigate to login screen 
     Actions.Login()
   }
   render(){
-    let { dispatch } = this.props;
-    
     return (
       <View style={styles.control_main}> 
         <ImageBackground style={{width:'100%',height:'100%'}} source={{uri:'https://i.imgur.com/rsulzFN.png'}}>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux'; // New code
+import Carousel from 'react-native-snap-carousel';
 import {
   View,
   Text,
@@ -8,10 +10,9 @@ import {
   Image,
   Button,
   Alert,
-  Dimensions
+  Dimensions,
+  StyleSheet
 } from 'react-native';
-import { Actions } from 'react-native-router-flux'; // New code
-import Carousel from 'react-native-snap-carousel';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 /* get width, height */
@@ -39,13 +40,12 @@ class Special extends React.Component {
     }
     _renderItem ({item, index }) {
           var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
-          let { dispatch } = this.props;
           return (
             <TouchableOpacity onPress={()=>{ Actions.DetailFilm({id:item.id}) }}>
-              <View style={{width:viewportWidth*0.575,backgroundColor:'#333',marginTop:13,marginBottom:13}}>
-                  <Image source={{uri:poster}} style={{width:viewportWidth*0.575,height:viewportHeight*0.5}} />
-                  <Text  style={{color:'#fff',padding:2}}>{ item.title }</Text>
-                  <Text style={{color:'#fff',padding:2}}>2h30p - Ngay {item.release_date}</Text>
+              <View style={style.item}>
+                  <Image source={{uri:poster}} style={style.poster} />
+                  <Text  style={style.title}>{ item.title }</Text>
+                  <Text style={style.description}>2h30p - Ngay {item.release_date}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -69,7 +69,26 @@ class Special extends React.Component {
     }
   }
   
-
+  const style = StyleSheet.create({
+    item:{
+      width:viewportWidth*0.575,
+      backgroundColor:'#333',
+      marginTop:13,
+      marginBottom:13
+    },
+    poster:{
+      width:viewportWidth*0.575,
+      height:viewportHeight*0.5
+    },
+    title:{
+      color:'#fff',
+      padding:2
+    },
+    description:{
+      color:'#fff',
+      padding:2
+    }
+  })
 
   const mapStateToProps = (state) => {
     return {

@@ -18,7 +18,6 @@ import stylesheets from '../stylesheets';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
-
 export default class Confirm extends Component{
   constructor(props){
     super(props);
@@ -34,25 +33,25 @@ export default class Confirm extends Component{
   render(){
     return (
       <View style={styles.view_main}>
-        <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'}}>
-          <TouchableOpacity onPress={()=>{ Actions.pop()}} style={{flex:1,paddingLeft:10,justifyContent:'center'}} >
+        <View style={style.navigation}>
+          <TouchableOpacity onPress={()=>{ Actions.pop()}} style={style.backIcon} >
             <Icon name="ios-arrow-round-back" size={40} color="red" />
           </TouchableOpacity>
-          <View style={{flex:7,justifyContent:'center'}}> 
+          <View style={style.navigationTitle}> 
             <Text> Thanh toán </Text>
             <Text style={{color:'#333',fontSize:10}}> Xác nhận thông tin</Text>
           </View>
-          <View style={{flex:2,justifyContent:'center'}}> 
+          <View style={style.menuIcon}> 
           </View>
         </View>
-        <View style={{flex:4/13,flexDirection:'row',marginTop:5,backgroundColor:'#fff'}}>
-            <View style={{flex:4,padding:10}}>
+        <View style={style.film}>
+            <View style={style.filmthumb}>
                 <Image
                     style={{width:'100%',height:'100%',flex: 1,resizeMode: 'contain'}}
                     source={{uri:'https://image.tmdb.org/t/p/w500/jV8wnk3Jgz6f7degmT3lHNGI2tK.jpg'}}
                 />
             </View>
-            <View style={{flex:6,padding:10}}>
+            <View style={style.filminfo}>
                 <Text style={{fontWeight:'bold'}}>{this.props.navigation.state.params.title}</Text>
                 <Text style={{color:'red'}}>Tổng: {this.props.navigation.state.params.totalpayment} đ</Text>
                 <Text>Thứ ba 10-04-2018</Text>
@@ -62,132 +61,129 @@ export default class Confirm extends Component{
                 <Text>Ghế : {this.props.navigation.state.params.seatSelected.map(item => (<Text key={item.name} >{item.name} ,</Text>))}</Text>
             </View>
         </View>
-        <View style={{flex:8/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}}>
+        <View style={style.confirm}>
             <View style={{flex:9,backgroundColor:'#eaebee'}}>
                 <ScrollView>
-                    <View style={stylePayment.title}>
+                    <View style={style.title}>
                         <Text>THÔNG TIN VÉ</Text>
                     </View>
                     <View style={{height:viewportHeight*0.15,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Số lượng vé </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Text >{this.props.navigation.state.params.seatSelected.length} </Text>
                                 </View>
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Tổng </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Text > {this.props.navigation.state.params.totalpayment} đ</Text>
                                 </View>
                                 
                             </View>
                         </View>
                     </View>
-                    <View style={stylePayment.title}>
+                    <View style={style.title}>
                         <Text>PHƯƠNG THỨC GIẢM GIÁ</Text>
                     </View>
                     <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Voucher Metiz </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#333" />
                                 </View>
                                 
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Thẻ Quà Tặng </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#333" />
                                 </View>                                
 
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Thẻ Thành Viên </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#333" />
                                 </View>
                                 
                             </View>
                         </View>
                     </View>
-                    <View style={stylePayment.title}>
+                    <View style={style.title}>
                         <Text>TỔNG KẾT</Text>
                     </View>
                     <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                         <View style={{flex:1,flexDirection:'column'}}>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Tổng Cộng </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Text >90.000 đ </Text>
                                 </View>
                                 
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Giảm Giá </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Text > 0 đ</Text>
                                 </View>
                                 
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Còn lại </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
+                                <View style={style.itemright}>
                                     <Text > 90.000 đ</Text>
                                 </View>
                                 
                             </View>
                         </View>
                     </View>
-                    <View style={stylePayment.title}>
-                        <Text>THANH TOÁN</Text>
+                    <View style={style.title}>
+                        <Text>CÁC HÌNH THỨC THANH TOÁN</Text>
                     </View>
                     <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
                     <View style={{flex:1,flexDirection:'column'}}>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Ví MOMO </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
-                                    <Text >90.000 đ </Text>
+                                <View style={style.itemright}>
+                                    <Text >Hoạt động </Text>
                                 </View>
-                                
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >Visa - MasterCard </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
-                                    <Text > 0 đ</Text>
+                                <View style={style.itemright}>
+                                    <Text > Hoạt Động</Text>
                                 </View>
-                                
                             </View>
-                            <View style={stylePayment.rowitem}>
-                                <View style={stylePayment.itemleft}>
+                            <View style={style.rowitem}>
+                                <View style={style.itemleft}>
                                     <Text >ATM Nội địa </Text>
                                 </View>
-                                <View style={stylePayment.itemright}>
-                                    <Text > 90.000 đ</Text>
+                                <View style={style.itemright}>
+                                    <Text > Hoạt Động</Text>
                                 </View>
-                                
                             </View>
                         </View>
                     </View>
@@ -199,7 +195,15 @@ export default class Confirm extends Component{
                             co tuổi phù hợp.
                             </Text>
                         </View>
-                        <Button onPress={()=>{ Actions.Payment({amount:this.props.navigation.state.params.totalpayment}) }} disabled={this.state.isAccept} title="Tôi đồng ý và tiếp tục" color="red" />
+                        <Button onPress={()=>{ 
+                                Actions.Payment({
+                                    amount:this.props.navigation.state.params.totalpayment,
+                                    seatSelected:this.props.navigation.state.params.seatSelected,
+                                    nameFilm:this.props.navigation.state.params.title
+                                })  
+                            }} 
+                            disabled={this.state.isAccept}
+                            title="Tôi đồng ý và tiếp tục" color="red" />
                     </View>
                 </ScrollView>
             </View>
@@ -209,7 +213,7 @@ export default class Confirm extends Component{
   }
 }
 
-const stylePayment = StyleSheet.create({
+const style = StyleSheet.create({
     title:{
         height:viewportHeight*0.05,
         marginTop:25,
@@ -231,6 +235,21 @@ const stylePayment = StyleSheet.create({
         padding:10,
         borderTopWidth:1,
         borderTopColor:'#e9ebee'
-    }
-    
+    },
+    navigation:{
+        flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'
+    },
+    backIcon:{
+        flex:1,paddingLeft:10,justifyContent:'center'
+    },
+    menuIcon:{
+        flex:2,justifyContent:'center'
+    },
+    navigationTitle:{
+        flex:7,justifyContent:'center'
+    },
+    film:{flex:4/13,flexDirection:'row',marginTop:5,backgroundColor:'#fff'},
+    filmthumb:{flex:4,padding:10},
+    filminfo:{flex:6,padding:10},
+    confirm:{flex:8/13,flexDirection:'column',backgroundColor:'#e9ebee',justifyContent:'center'}
 })

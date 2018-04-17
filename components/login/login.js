@@ -67,11 +67,6 @@ export default class Login extends Component{
             ref="sdt"
             keyboardType="numeric"
           />
-          {/* <TextInput
-            style={{borderWidth:1,borderColor:'black',backgroundColor:'#fff'}}
-            placeholder="password"
-            secureTextEntry={true}
-            ref="password" /> */}
           <Kohana
             style={{ backgroundColor: '#f9f5ed',marginTop:3 }}
             label={'Password'}

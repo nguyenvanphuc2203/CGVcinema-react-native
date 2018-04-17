@@ -19,7 +19,8 @@ import {
   ScrollView,
   Dimensions,
   RefreshControl,
-  FlatList
+  FlatList,
+  NetInfo
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux'; // New code
@@ -39,14 +40,24 @@ class Item extends Component<{}> {
     header: null,
   })
   componentWillMount(){
-    fetch('https://api.themoviedb.org/3/movie/'+this.props.navigation.state.params.id+'?api_key=e8631f0c8f0363c450d47ace4043eca5&append_to_response=videos')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({data:responseJson});
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    NetInfo.isConnected.fetch().done((isConnected) => {
+      if ( isConnected )
+      {
+        fetch('https://api.themoviedb.org/3/movie/'+this.props.navigation.state.params.id+'?api_key=e8631f0c8f0363c450d47ace4043eca5&append_to_response=videos')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({data:responseJson});
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
+      else
+      {
+          alert('network fail!')
+      }
+  });
+    
   }
 
   ActivityIndicatorLoadingView() {
@@ -61,6 +72,7 @@ class Item extends Component<{}> {
   _onRefresh() {
     this.setState({refreshing: true});
     setTimeout(()=>{
+      Actions.refresh();
       this.setState({refreshing: false});
     },1000)
   }
@@ -71,7 +83,9 @@ class Item extends Component<{}> {
     this._drawer.open()
   };
   render() {
+    // get params navigate 
     const { params } = this.props.navigation.state;
+    // get trailler id youtube
     var str = JSON.stringify(this.state.data.videos);
     var trailer_url = String(str).substr(87, 11);
     console.log(trailer_url)
@@ -86,7 +100,6 @@ class Item extends Component<{}> {
         >
          
         <View style={styles.view_main}>
-        
          <View style={{flex:1/13}}>
             <View style={{flex:1,flexDirection:"row",justifyContent:'center',backgroundColor:'#fff'}}>
               <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}} style={{flex:1,paddingLeft:10,justifyContent:'center'}} >
@@ -229,7 +242,6 @@ class Item extends Component<{}> {
                 <Button color="#841584" onPress={()=>{this.setState({isModalVisible: !this.state.isModalVisible})}} title="Hủy"/>
               </View>
             </Modal>
-
           </ScrollView>
           </View>
     </Drawer>

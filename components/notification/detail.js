@@ -34,18 +34,18 @@ export default class Detail extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={styles.view_main}>
-        <View style={{flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#fff'}}>
-          <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}} style={{flex:1,paddingLeft:10,justifyContent:'center'}} >
+        <View style={style.navigation}>
+          <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}} style={style.backIcon} >
             <Icon name="ios-arrow-round-back" size={40} color="red" />
           </TouchableOpacity>
-          <View style={{flex:7,justifyContent:'center'}}> 
+          <View style={style.navigationTitle}> 
             <Text>Thông tin chi tiết</Text>
           </View>
-          <View style={{flex:2,justifyContent:'center'}}> 
+          <View style={style.menuIcon}> 
           </View>
         </View>
-        <View style={{flex:12/13,marginTop:6}}>
-            <View style={{flex:1,flexDirection:'column',padding:5,backgroundColor:'#fff'}}>
+        <View style={style.container}>
+            <View style={style.content}>
               <View style={{flex:3}}>
                 <Image
                   style={{width:'100%',height:'100%'}}
@@ -68,3 +68,20 @@ export default class Detail extends React.Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  navigation:{
+    flex:1/13,flexDirection:"row",justifyContent:'center',backgroundColor:'#f1f8fe'
+  },
+  backIcon:{
+      flex:1,paddingLeft:10,justifyContent:'center'
+  },
+  menuIcon:{
+      flex:2,justifyContent:'center'
+  },
+  navigationTitle:{
+      flex:7,justifyContent:'center'
+  },
+  container:{flex:12/13,marginTop:6},
+  content:{flex:1,flexDirection:'column',padding:5,backgroundColor:'#fff'}
+})

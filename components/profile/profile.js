@@ -35,7 +35,6 @@ var options = {
   }
 };
 
-
 export default class Profile extends Component{
   constructor(props){
     super(props);

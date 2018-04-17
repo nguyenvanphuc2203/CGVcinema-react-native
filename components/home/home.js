@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
 import Swiper from 'react-native-swiper';
+import Carousel from 'react-native-snap-carousel';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { TabNavigator } from 'react-navigation';
 import { connect }  from 'react-redux';
 import { Actions } from 'react-native-router-flux'; // New code
 import {
@@ -14,12 +16,11 @@ import {
   ActivityIndicator,
   Dimensions,
   ScrollView,
+  StyleSheet,
   RefreshControl
 } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import styles from '../stylesheets';
 import Movies from './tab-film';
-import Carousel from 'react-native-snap-carousel';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 /* get width, height */
@@ -33,6 +34,9 @@ class Homeview extends Component{
   static navigationOptions = () => ({
       header:null
   })
+  /**
+   *  handle refesh screen 
+   */
   _onRefresh() {
     this.setState({refreshing: true});
     setTimeout(()=>{
@@ -40,7 +44,6 @@ class Homeview extends Component{
     },1000)
   }
   render(){
-    let { dispatch } = this.props;
     return (
           <View style={styles.content_view}>
             {/* <!-- image slider --> */}
@@ -83,17 +86,20 @@ class Homeview extends Component{
                 </Swiper>
               </View>
               {/* <!-- Tab Movies --> */}
-              <View style={{height:viewportHeight*0.65}}>
+              <View style={style.movies}>
                 <Movies />
               </View>
 
               {/* <!-- Rạp Metiz - Chỉ đường --> */}
-              <View style={{height:viewportHeight*0.07}}>
-                <TouchableOpacity onPress={()=>{  Actions.Maps() }} style={{flex:1,flexDirection:'row',padding:10,backgroundColor:'#fff'}}>
-                  <View style={{flex:9,justifyContent:'center'}}>
+              <View style={style.maps}>
+                <TouchableOpacity 
+                onPress={()=>{  Actions.Maps() }} 
+                style={style.maprow}
+                >
+                  <View style={style.maptext}>
                     <Text>Rạp Metiz - Chỉ đường</Text>
                   </View>
-                  <View style={{flex:1,justifyContent:'center',alignItems:'flex-end'}}>
+                  <View style={style.mapicon}>
                     <Icon name="ios-navigate-outline" size={22} color="red" />
                   </View>
                 </TouchableOpacity>
@@ -101,13 +107,13 @@ class Homeview extends Component{
 
               {/* Tin NónG */}
 
-              <View style={{height:viewportHeight*0.05,marginTop:6}}>
-                <View style={{flex:1,flexDirection:'row',padding:10,backgroundColor:'#fff'}}>
-                  <View style={{flex:7,justifyContent:'center',alignItems:'flex-start'}}>
+              <View style={style.hot}>
+                <View style={style.hotrow}>
+                  <View style={style.hottext}>
                     <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
                   </View>
                   <TouchableOpacity onPress={()=>{  Actions.Promotion() }}>
-                    <View style={{flex:3,padding:2,justifyContent:'center',alignItems:'flex-end',borderRadius:9,borderWidth:1,borderColor:'#333'}}>
+                    <View style={style.hotall}>
                       <Text style={{fontWeight:'bold'}}> Tất cả >></Text>
                     </View>
                   </TouchableOpacity>
@@ -116,19 +122,19 @@ class Homeview extends Component{
 
               {/*Tin nóng khuyễn mãi */}
 
-              <View style={{height:viewportHeight*0.4}}>
-                <TouchableOpacity style={{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'}} onPress={()=> { Actions.NotificationDetail({title:'tin nóng',description:'hihi'}) }}>
+              <View style={style.promotion}>
+                <TouchableOpacity style={style.promotionrow} onPress={()=> { Actions.NotificationDetail({title:'tin nóng',description:'hihi'}) }}>
                   <View style={{flex:6}}>
-                      <Image
-                        style={{width:'100%',height:'100%'}}
-                        source={require('../images/banner_film1.jpg')}
-                      />
-                    </View>
-                    <View style={{flex:4,padding:3}}>
-                      <Text style={{fontWeight:'bold'}}> thưởng thức bộ phim tháng năm rực rỡ chỉ với 45.000đ >></Text>
-                    </View>
+                    <Image
+                      style={{width:'100%',height:'100%'}}
+                      source={require('../images/banner_film1.jpg')}
+                    />
+                  </View>
+                  <View style={{flex:4,padding:3}}>
+                    <Text style={{fontWeight:'bold'}}> thưởng thức bộ phim tháng năm rực rỡ chỉ với 45.000đ >></Text>
+                  </View>
                 </TouchableOpacity>
-                <View style={{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'}}>
+                <View style={style.promotionrow}>
                   <View style={{flex:6}}>
                     <Image
                       style={{width:'100%',height:'100%'}}
@@ -139,7 +145,7 @@ class Homeview extends Component{
                     <Text style={{fontWeight:'bold'}}> Thứ 2 may mắn tháng năm rực rỡ chỉ với 45.000đ</Text>
                   </View>
                 </View>
-                <View style={{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'}}>
+                <View style={style.promotionrow}>
                   <View style={{flex:6}}>
                     <Image
                       style={{width:'100%',height:'100%'}}
@@ -154,8 +160,8 @@ class Homeview extends Component{
               
               {/* scroll to top  */}
 
-              <View style={{height:viewportHeight*0.2,marginTop:6}}>
-                <View style={{flex:1,flexDirection:'column',padding:5,justifyContent:'center',alignItems:'center'}}>
+              <View style={style.scroll}>
+                <View style={style.scrollsection}>
                   <Image
                     style={{width:110,height:45}}
                     source={{uri:'https://i.imgur.com/bO9lG5j.png'}}
@@ -171,5 +177,55 @@ class Homeview extends Component{
   }
 }
 
+const style = StyleSheet.create({
+  movies:{
+    height:viewportHeight*0.65
+  },
+  maps:{
+    height:viewportHeight*0.07
+  },
+  maprow:{
+    flex:1,
+    flexDirection:'row',
+    padding:10,
+    backgroundColor:'#fff'
+  },
+  maptext:{
+    flex:9,
+    justifyContent:'center'
+  },
+  mapicon:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'flex-end'
+  },
+  hot:{
+    height:viewportHeight*0.05,
+    marginTop:6
+  },
+  hotrow:{
+    flex:1,flexDirection:'row',
+    padding:10,
+    backgroundColor:'#fff'
+  },
+  hottext:{
+    flex:7,
+    justifyContent:'center',
+    alignItems:'flex-start'
+  },
+  hotall:{
+    flex:3,
+    padding:2,
+    justifyContent:'center',
+    alignItems:'flex-end',
+    borderRadius:9,
+    borderWidth:1,
+    borderColor:'#333'
+  },
+  promotion:{ height:viewportHeight*0.4 },
+  promotionrow:{flex:1,flexDirection:'row',padding:2,backgroundColor:'#fff'},
+  scroll:{height:viewportHeight*0.2,marginTop:6},
+  scrollsection:{flex:1,flexDirection:'column',padding:5,justifyContent:'center',alignItems:'center'}
+})
 
 export default connect(state => state)(Homeview)

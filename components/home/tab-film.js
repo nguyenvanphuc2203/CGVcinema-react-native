@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Carousel from 'react-native-snap-carousel';
+import { TabNavigator } from 'react-navigation';
 import {
   View,
   Text,
@@ -9,9 +11,6 @@ import {
   Alert,
   Dimensions
 } from 'react-native';
-
-import Carousel from 'react-native-snap-carousel';
-import { TabNavigator } from 'react-navigation';
 import Showing from './tabfilm/showing';
 import Special from './tabfilm/special';
 import Comming from './tabfilm/comming';

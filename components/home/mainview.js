@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import styles from '../stylesheets';
 import Drawer from 'react-native-drawer';
-import ControlPanel from '../menu/controlpanel';
 import Swiper from 'react-native-swiper';
+import { Actions } from 'react-native-router-flux'; // New code
+import styles from '../stylesheets';
+import ControlPanel from '../menu/controlpanel';
 import Home from './home';
 import {
   View,
@@ -14,9 +15,9 @@ import {
   ScrollView,
   Dimensions,
   BackHandler,
-  Alert
+  Alert,
+  StyleSheet
 } from 'react-native';
-import { Actions } from 'react-native-router-flux'; // New code
 
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
@@ -46,9 +47,11 @@ export default class Drawermenu extends Component{
     header:null
   })
   closeControlPanel = () => {
+    // close drawer menu
     this._drawer.close()
   };
   openControlPanel = () => {
+    // open drawer menu
     this._drawer.open()
   };
   render(){
@@ -63,18 +66,18 @@ export default class Drawermenu extends Component{
         >
           <View style={styles.view_main}>
             <View style={styles.head_view}>
-              <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={{flex:7,justifyContent:'center',alignItems:'flex-start',paddingLeft:10}} >
+              <TouchableOpacity onPress={()=>{ Actions.Profile() }} style={style.profile} >
                 <Image
-                  style={{width:viewportWidth/12,height:viewportWidth/12,borderRadius:viewportWidth/24}}
+                  style={style.profile_image}
                   source={{uri:'https://i.imgur.com/ik7IrFf.jpg'}}
                 />
               </TouchableOpacity>
-              <TouchableOpacity  onPress={ ()=>{Actions.Notification()}  } style={{flex:1,justifyContent:'center',alignItems:'center',borderColor:'#fff',borderRadius:20,borderWidth:2}}>
+              <TouchableOpacity  onPress={ ()=>{Actions.Notification()}  } style={style.notification}>
                 <Text style={{color:'#fff'}}>1</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flex:2,alignItems:'center'}} onPress={this.openControlPanel}>
+              <TouchableOpacity style={style.menuIcon} onPress={this.openControlPanel}>
                 <Image
-                  style={{width:viewportWidth/12,height:viewportWidth/12}}
+                  style={style.menuImage}
                   source={require('../images/menu_icon.png')}
                 />
               </TouchableOpacity>
@@ -85,3 +88,32 @@ export default class Drawermenu extends Component{
     );
   }
 }
+
+const style = StyleSheet.create({
+  profile:{
+    flex:7,
+    justifyContent:'center',
+    alignItems:'flex-start',
+    paddingLeft:10
+  },
+  profile_image:{
+    width:viewportWidth/12,
+    height:viewportWidth/12,
+    borderRadius:viewportWidth/24
+  },
+  notification:{
+    flex:1,justifyContent:'center',
+    alignItems:'center',
+    borderColor:'#fff',
+    borderRadius:20,
+    borderWidth:2
+  },
+  menuIcon:{
+    flex:2,
+    alignItems:'center'
+  },
+  menuImage:{
+    width:viewportWidth/12,
+    height:viewportWidth/12
+  }
+})
