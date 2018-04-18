@@ -41,6 +41,7 @@ class Item extends Component<{}> {
     header: null,
   })
   componentWillMount(){
+    // handle network before fetch api
     NetInfo.isConnected.fetch().done((isConnected) => {
       if ( isConnected )
       {
@@ -60,12 +61,12 @@ class Item extends Component<{}> {
           'Vui lòng kết nối mạng để sử dụng!!', [{
               text: 'OK',
               onPress: () => Actions.pop()
-          }, ], {
+          }], {
               cancelable: false
           }
-      )
+        )
       }
-  });
+    });
     
   }
 
@@ -107,9 +108,8 @@ class Item extends Component<{}> {
         ref={(ref) => this._drawer = ref}
         content={<ControlPanel />}
         >
-         
         <View style={styles.view_main}>
-         <View style={{flex:1/13}}>
+          <View style={{flex:1/13}}>
             <View style={{flex:1,flexDirection:"row",justifyContent:'center',backgroundColor:'#fff'}}>
               <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}} style={{flex:1,paddingLeft:10,justifyContent:'center'}} >
                 <Icon name="ios-arrow-round-back" size={40} color="red" />
@@ -122,7 +122,9 @@ class Item extends Component<{}> {
               </TouchableOpacity>
             </View>
           </View>
-          {/* View  */}
+
+        {/* View  */}
+
         <ScrollView 
           refreshControl={
             <RefreshControl
@@ -132,7 +134,7 @@ class Item extends Component<{}> {
           }
           ref='_scrollView'
         >
-          <View style={{height:viewportHeight*0.3,marginTop:6,flexDirection:"column",backgroundColor:'#eaebee'}}>
+          <View style={style.trailler}>
             <View style={{flex:1,marginTop:5,backgroundColor:'#fff'}}>
               <ImageBackground style={{width:'100%',height:'100%'}} source={{uri:'https://image.tmdb.org/t/p/w500'+this.state.data.backdrop_path}}>
                 <WebView
@@ -143,8 +145,8 @@ class Item extends Component<{}> {
               </ImageBackground>
             </View>
           </View>
-          <View style={{height:viewportHeight*0.3,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
-            <View style={{flex:3,flexDirection:"row"}}>
+          <View style={style.film_info}>
+            <View style={style.film_title}>
               <View style={{flex:8,paddingLeft:5,justifyContent:'center'}}>
                 <Text style={{color:'#333',fontSize:15,fontWeight:'bold'}}>{this.state.data.title}</Text>
               </View>
@@ -152,7 +154,7 @@ class Item extends Component<{}> {
                 <Button onPress={()=>{ Actions.Showtimes({title:this.state.data.title})}} title="Đặt vé" color="red" ></Button>
               </View>
             </View>
-            <View style={{flex:2}}>
+            <View style={style.film_type}>
               <View style={{flex:1,flexDirection:"row",paddingLeft:10,justifyContent:'center',alignItems:'center'}}>
                 <View style={{padding:3}}>
                   <Icon name="md-aperture" size={50} color="#333" />
@@ -167,16 +169,15 @@ class Item extends Component<{}> {
                   <Icon name="logo-codepen" size={50} color="#333" />
                 </View>
               </View>
-              
             </View>
-            <View style={{flex:6,flexDirection:"row",paddingTop:5}}>
+            <View style={style.overview}>
               <View style={{flex:1,paddingLeft:10,justifyContent:'center'}}>
                 <Text numberOfLines={5} style={{color:'#333',overflow:'hidden'}}>{this.state.data.overview}</Text>
               </View>
               
             </View>
           </View>
-          <View style={{height:viewportHeight*0.32,paddingTop:10,marginTop:6,backgroundColor:'#fff'}}>
+          <View style={style.film_content}>
             <View style={{flexDirection:"row"}}>
                 <Image
                 style={{width:100,height:200,flex: 1,resizeMode: 'contain'}}
@@ -195,7 +196,7 @@ class Item extends Component<{}> {
           </View>
           
           {/* promotion  */}
-          <View style={{height:viewportHeight*0.05,marginTop:6}}>
+          <View style={style.promtion}>
             <View style={{flex:1,flexDirection:'row',padding:5,backgroundColor:'#fff'}}>
               <View style={{flex:4,justifyContent:'center'}}>
                 <Text style={{fontWeight:'bold'}}>TIN NÓNG</Text>
@@ -209,7 +210,7 @@ class Item extends Component<{}> {
             </View>
           </View>
 
-          <View style={{height:viewportHeight*0.3,paddingTop:10,backgroundColor:'#fff'}}>
+          <View style={style.promotion_content}>
             <FlatList
               horizontal
               data={[{title:'hihi'},{title:'hihi'},{title:'hihi'}]}
@@ -244,20 +245,25 @@ class Item extends Component<{}> {
               </TouchableOpacity>
             </View>
           </View>
-            {/* modal trailer */}
-            <Modal isVisible={this.state.isModalVisible}>
-              <View style={{ flex: 0.5,justifyContent:'center' }}>
-                <WebView style={{flex:1}} javaScriptEnabled={true} source={{ uri:'https://www.youtube.com/embed/'+trailer_url}}/>
-                <Button color="#841584" onPress={()=>{this.setState({isModalVisible: !this.state.isModalVisible})}} title="Hủy"/>
-              </View>
-            </Modal>
-          </ScrollView>
-          </View>
+        </ScrollView>
+      </View>
     </Drawer>
         
     );
   }
 }
+
+const style = StyleSheet.create({
+  trailler:{height:viewportHeight*0.3,marginTop:6,flexDirection:"column",backgroundColor:'#eaebee'},
+  film_info:{height:viewportHeight*0.3,paddingTop:10,marginTop:6,backgroundColor:'#fff'},
+  film_title:{flex:3,flexDirection:"row"},
+  film_type:{flex:2},
+  overview:{flex:6,flexDirection:"row",paddingTop:5},
+  film_content:{height:viewportHeight*0.32,paddingTop:10,marginTop:6,backgroundColor:'#fff'},
+  promtion:{height:viewportHeight*0.05,marginTop:6},
+  promotion_content:{height:viewportHeight*0.3,paddingTop:10,backgroundColor:'#fff'},
+  
+})
 
 const mapStateToProps = (state) => {
   return {

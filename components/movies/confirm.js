@@ -67,7 +67,7 @@ export default class Confirm extends Component{
                     <View style={style.title}>
                         <Text>THÔNG TIN VÉ</Text>
                     </View>
-                    <View style={{height:viewportHeight*0.15,marginTop:5,backgroundColor:'#fff'}}>
+                    <View style={style.info}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={style.rowitem}>
                                 <View style={style.itemleft}>
@@ -91,7 +91,7 @@ export default class Confirm extends Component{
                     <View style={style.title}>
                         <Text>PHƯƠNG THỨC GIẢM GIÁ</Text>
                     </View>
-                    <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
+                    <View style={style.sale}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={style.rowitem}>
                                 <View style={style.itemleft}>
@@ -125,7 +125,7 @@ export default class Confirm extends Component{
                     <View style={style.title}>
                         <Text>TỔNG KẾT</Text>
                     </View>
-                    <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
+                    <View style={style.sum}>
                         <View style={{flex:1,flexDirection:'column'}}>
                             <View style={style.rowitem}>
                                 <View style={style.itemleft}>
@@ -159,7 +159,7 @@ export default class Confirm extends Component{
                     <View style={style.title}>
                         <Text>CÁC HÌNH THỨC THANH TOÁN</Text>
                     </View>
-                    <View style={{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'}}>
+                    <View style={style.paymentMethod}>
                     <View style={{flex:1,flexDirection:'column'}}>
                             <View style={style.rowitem}>
                                 <View style={style.itemleft}>
@@ -187,8 +187,8 @@ export default class Confirm extends Component{
                             </View>
                         </View>
                     </View>
-                    <View style={{height:viewportHeight*0.15,padding:10 }}>
-                        <View style={{flexDirection:'row',marginBottom:7}}>
+                    <View style={style.checkbox}>
+                        <View style={style.dieukhoan}>
                             <CheckBox onChange={()=>{this.setState({isAccept:false})}} />
                             <Text style={{paddingRight:20}}>
                             Tôi đồng ý với điều khoản sử dụng và đang mua vé người 
@@ -248,6 +248,12 @@ const style = StyleSheet.create({
     navigationTitle:{
         flex:7,justifyContent:'center'
     },
+    dieukhoan:{flexDirection:'row',marginBottom:7},
+    checkbox:{height:viewportHeight*0.15,padding:10 },
+    paymentMethod:{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'},
+    sum:{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'},
+    sale:{height:viewportHeight*0.2,marginTop:5,backgroundColor:'#fff'},
+    info:{height:viewportHeight*0.15,marginTop:5,backgroundColor:'#fff'},
     film:{flex:4/13,flexDirection:'row',marginTop:5,backgroundColor:'#fff'},
     filmthumb:{flex:4,padding:10},
     filminfo:{flex:6,padding:10},

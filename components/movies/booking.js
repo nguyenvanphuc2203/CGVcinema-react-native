@@ -35,34 +35,6 @@ export default class BookHistory extends Component{
             {name:'A11',toggle:false,booked:false},
             {name:'A12',toggle:false,booked:false}
         ],
-        seatB: [
-            {name:'A1',toggle:false},
-            {name:'A2',toggle:false},
-            {name:'A3',toggle:false},
-            {name:'A4',toggle:false},
-            {name:'A5',toggle:false},
-            {name:'A6',toggle:false},
-            {name:'A7',toggle:false},
-            {name:'A8',toggle:false},
-            {name:'A9',toggle:false},
-            {name:'A10',toggle:false},
-            {name:'A11',toggle:false},
-            {name:'A12',toggle:false}
-        ],
-        seatC: [
-            {name:'A1',toggle:false},
-            {name:'A2',toggle:false},
-            {name:'A3',toggle:false},
-            {name:'A4',toggle:false},
-            {name:'A5',toggle:false},
-            {name:'A6',toggle:false},
-            {name:'A7',toggle:false},
-            {name:'A8',toggle:false},
-            {name:'A9',toggle:false},
-            {name:'A10',toggle:false},
-            {name:'A11',toggle:false},
-            {name:'A12',toggle:false}
-        ],
         toggle:false,
         seatSelected:[],
         seatPayment:[]
@@ -71,7 +43,6 @@ export default class BookHistory extends Component{
   static navigationOptions = () => ({
     header: null,
   })
-
   render(){
     return (
       <View style={styles.view_main}>
